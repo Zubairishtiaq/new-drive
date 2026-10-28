@@ -641,11 +641,11 @@
             .hero-buttons { flex-direction: column; width: 100%; gap: 12px; }
             .hero-buttons .btn { width: 100%; }
 
-            /* Top Bar Mobile Fixes (Grid layout) */
+            /* Top Bar Mobile Fixes (2 items per row) */
             .new-top-bar { padding: 20px 0; }
             .new-top-bar-inner {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+                grid-template-columns: repeat(2, 1fr); /* 2 columns */
                 gap: 15px;
                 padding: 0 15px;
                 justify-items: start;
@@ -657,6 +657,15 @@
                 align-items: flex-start;
                 text-align: left;
             }
+            /* Center the last item (5th) if it's alone */
+            .new-top-item:last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .new-top-icon { font-size: 24px; margin-top: 2px; }
             .new-top-text { font-size: 13px; }
 
@@ -725,9 +734,9 @@
             .section-title { font-size: 24px; }
             .section-subtitle { font-size: 14px; }
 
-            /* Top Bar Mobile Fixes (Single Column) */
+            /* Top Bar Mobile Fixes (Keep 2 columns on 480px) */
             .new-top-bar-inner {
-                grid-template-columns: 1fr; /* 1 column on small screens */
+                grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
 
@@ -815,6 +824,16 @@
             .hero p { font-size: 13px; }
             .section-title { font-size: 22px; }
 
+            /* Top Bar Mobile Fixes (1 column on iPhone Mini) */
+            .new-top-bar-inner {
+                grid-template-columns: 1fr; /* 1 column */
+                gap: 12px;
+            }
+            .new-top-item:last-child:nth-child(odd) {
+                align-items: flex-start;
+                text-align: left;
+                flex-direction: row;
+            }
             .new-top-text { font-size: 12px; }
             .new-top-icon { font-size: 22px; }
 
