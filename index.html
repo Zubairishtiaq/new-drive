@@ -14,6 +14,8 @@
         :root {
             --brand-red: #CA3535;
             --brand-red-hover: #a82b2b;
+            --brand-blue: #0253BB; 
+            --brand-blue-hover: #013e8f;
             --primary-dark: #111827;
             --text-gray: #4B5563;
             --bg-light: #F9FAFB;
@@ -30,14 +32,19 @@
             padding: 0;
         }
 
-        html { scroll-behavior: smooth; }
+        /* Prevent horizontal scrolling on mobile */
+        html, body {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
 
         body {
             font-family: 'Open Sans', sans-serif;
             color: #1F2937;
             line-height: 1.6;
             background-color: var(--white);
-            overflow-x: hidden;
             -webkit-text-size-adjust: 100%;
         }
 
@@ -72,10 +79,65 @@
             touch-action: manipulation;
         }
 
-        .btn-red { background-color: var(--brand-red); color: white; box-shadow: 0 4px 15px rgba(202, 53, 53, 0.3); }
-        .btn-red:hover { background-color: var(--brand-red-hover); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(202, 53, 53, 0.4); }
-        .btn-outline { border: 2px solid white; color: white; background: transparent; }
-        .btn-outline:hover { background: white; color: var(--primary-dark); transform: translateY(-3px); }
+        /* --- HERO BUTTON ANIMATIONS & COLORS --- */
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .hero-btn-primary, .hero-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50px;
+            background-color: var(--brand-blue);
+            color: white;
+            border: 2px solid var(--brand-blue);
+            box-shadow: 0 8px 25px rgba(2, 83, 187, 0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(2, 83, 187, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(2, 83, 187, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(2, 83, 187, 0); }
+        }
+
+        .hero-btn-primary:hover, .hero-btn-secondary:hover {
+            background-color: var(--brand-blue-hover);
+            border-color: var(--brand-blue-hover);
+            transform: translateY(-5px) scale(1.02);
+            animation: pulse-glow 1.5s infinite;
+        }
+
+        .hero-btn-primary i {
+            transition: transform 0.3s ease;
+        }
+        .hero-btn-primary:hover i {
+            transform: translateX(5px);
+        }
+
+        .btn-red { 
+            background-color: var(--brand-red); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(202, 53, 53, 0.3); 
+        }
+        .btn-red:hover { 
+            background-color: var(--brand-red-hover); 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px rgba(202, 53, 53, 0.4); 
+        }
+        
         .btn-small { padding: 10px 20px; font-size: 14px; }
 
         .section-padding { padding: 90px 0; }
@@ -126,7 +188,6 @@
 
         .logo-img { height: 50px; width: auto; object-fit: contain; }
         
-        /* Distinct Colors for Logo Text */
         .company-text {
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
@@ -141,7 +202,6 @@
         .company-text .line1 { color: var(--brand-red); }
         .company-text .line2 { color: #111827; }
 
-        /* Navigation */
         .nav-links { display: flex; gap: 25px; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
         .nav-links a { position: relative; transition: color 0.3s; }
         .nav-links a::after {
@@ -157,7 +217,6 @@
         .nav-links a:hover::after { width: 100%; }
         .nav-links a:hover { color: var(--brand-red); }
 
-        /* Contact Card Style in Header */
         .header-contact-card {
             background: var(--bg-light);
             border: 1px solid #E5E7EB;
@@ -186,7 +245,6 @@
             line-height: 1.2;
         }
 
-        /* Mobile Menu Toggle Button */
         .mobile-menu-btn {
             display: none;
             font-size: 28px;
@@ -199,7 +257,6 @@
         }
         .mobile-menu-btn:hover { color: var(--brand-red); }
 
-        /* Mobile Dropdown Menu */
         .mobile-menu {
             display: none;
             position: absolute;
@@ -224,8 +281,8 @@
         .hero {
             position: relative;
             background: 
-                linear-gradient(135deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.95) 100%),
-                url('/ultra-wide-large-format-commercial-photography-16.png');
+                linear-gradient(90deg, rgba(17, 24, 39, 0.85) 0%, rgba(17, 24, 39, 0.5) 40%, rgba(17, 24, 39, 0) 100%),
+                url('/slider.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -263,13 +320,11 @@
         .hero p {
             font-size: 18px;
             margin-bottom: 35px;
-            opacity: 0.9;
+            color: #f1f5f9;
             font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
             max-width: 800px;
         }
-        
-        .hero-buttons { display: flex; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; }
 
         /* --- NEW TOP BAR --- */
         .new-top-bar {
@@ -295,9 +350,10 @@
             text-align: left;
         }
 
-        .new-top-icon {
-            font-size: 34px;
-            color: var(--brand-red);
+        .custom-icon-img {
+            width: 40px;
+            height: auto;
+            object-fit: contain;
             flex-shrink: 0;
         }
 
@@ -344,10 +400,10 @@
         .course-list li { margin-bottom: 12px; display: flex; gap: 12px; align-items: flex-start; }
         .course-list i { color: var(--brand-red); margin-top: 4px; }
 
-        /* --- WHY CHOOSE US (3x3 Desktop, 2x2 Mobile) --- */
+        /* --- WHY CHOOSE US --- */
         .features-grid-new {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3x3 on desktop */
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
             margin-top: 40px;
         }
@@ -371,70 +427,194 @@
         /* --- STEPS SECTION --- */
         .steps-section-wrapper { background-color: #F8FAFC; padding: 80px 0; }
         .steps-header { text-align: center; margin-bottom: 60px; }
-        .steps-header h2 { font-size: 36px; color: #111827; }
+        .steps-header h2 { font-size: 38px; color: #111827; font-weight: 800; }
         .steps-header h2 span { color: var(--brand-red); }
 
-        .steps-container-new { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; max-width: 1100px; margin: 0 auto; align-items: stretch; }
-        .steps-container-new::before { content: ''; position: absolute; top: 50px; left: 12%; width: 76%; height: 2px; background-color: #E5E7EB; z-index: 1; }
+        .steps-container-new { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px; 
+            position: relative; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            align-items: stretch; 
+        }
         
-        .step-item-new { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease; height: 100%; }
+        .step-item-new { 
+            position: relative; 
+            z-index: 2; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            transition: transform 0.3s ease; 
+            height: 100%; 
+            margin-top: 20px; 
+        }
         .step-item-new:hover { transform: translateY(-5px); }
         
-        .step-circle-wrapper { width: 100px; height: 100px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; transition: all 0.3s ease; flex-shrink: 0; }
-        .step-item-new:hover .step-circle-wrapper { border-color: var(--brand-red); box-shadow: 0 0 0 6px rgba(202, 53, 53, 0.1), 0 10px 20px rgba(202, 53, 53, 0.2); }
-        .step-icon { font-size: 40px; color: var(--primary-dark); transition: color 0.3s ease; }
-        .step-item-new:hover .step-icon { color: var(--brand-red); }
+        .step-circle-wrapper { 
+            width: 130px; 
+            height: 130px; 
+            background: white; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: -25px; 
+            border: 3px solid #D1D5DB; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            position: relative; 
+            transition: all 0.3s ease; 
+            flex-shrink: 0; 
+            z-index: 10;
+        }
         
-        .step-number-badge { position: absolute; bottom: -10px; background-color: var(--brand-red); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; border: 3px solid white; z-index: 3; }
+        .step-item-new:hover .step-circle-wrapper { 
+            border-color: var(--brand-blue); 
+            box-shadow: 0 0 0 6px rgba(2, 83, 187, 0.1), 0 10px 20px rgba(2, 83, 187, 0.2); 
+        }
         
+        .step-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
         .step-card-new { 
             background: white; 
             border-radius: 12px; 
-            padding: 30px 20px 20px 20px; 
+            padding: 50px 25px 25px 25px; 
             text-align: center; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
             width: 100%; 
             display: flex; 
             flex-direction: column; 
-            border: 1px solid #F3F4F6; 
+            border: 1px solid #E5E7EB; 
             transition: all 0.3s ease; 
-            margin-top: 10px; 
             flex-grow: 1;
-            height: calc(100% - 110px);
+            height: 100%;
         }
-        .step-card-new h4 { font-size: 16px; color: #111827; margin-bottom: 15px; font-weight: 700; }
-        .step-card-new p { font-size: 13px; color: #6B7280; margin-bottom: 30px; flex-grow: 1; line-height: 1.5; }
-        .step-bottom-new { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; font-weight: 600; color: #4B5563; border-top: 1px solid #F3F4F6; padding-top: 15px; }
-        .step-bottom-new i { color: var(--brand-red); }
-
-        /* --- PACKAGES --- */
-        .packages-section-red { background: var(--white); padding: 80px 0; }
-        .packages-grid-red { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; align-items: start; }
         
-        .package-card-red {
+        .step-card-new h4 { font-size: 18px; color: #111827; margin-bottom: 15px; font-weight: 700; }
+        .step-card-new p { font-size: 14px; color: #4B5563; margin-bottom: 30px; flex-grow: 1; line-height: 1.5; }
+        
+        .step-bottom-new { 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-start; 
+            gap: 12px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            color: #111827; 
+            border-top: 1px solid #E5E7EB; 
+            padding-top: 15px; 
+            text-align: left;
+            margin-top: auto;
+        }
+        
+        .step-bottom-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        /* --- NEW BDE PACKAGES SECTION (REPLACED) --- */
+        .bde-package-section { background: #F8FAFC; padding: 80px 0; }
+        
+        .bde-header { text-align: center; margin-bottom: 50px; }
+        .bde-header h2 { font-size: 38px; color: #111827; font-weight: 800; margin-bottom: 15px; }
+        .bde-header h2 span { color: var(--brand-red); }
+        .bde-header p { font-size: 15px; color: #4B5563; max-width: 700px; margin: 0 auto; }
+
+        .bde-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .bde-card {
             background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #E5E7EB;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s;
-            border: 1px solid #E5E7EB;
+            position: relative;
+            transition: var(--transition);
         }
-        .package-card-red:hover { transform: translateY(-5px); border-color: var(--brand-red); }
+        .bde-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
 
-        .pkg-top-red { background-color: var(--brand-red); color: white; padding: 30px 25px; position: relative; }
-        .pkg-top-red h3 { color: white; font-size: 20px; margin-bottom: 15px; font-weight: 700; }
-        .pkg-price-red { font-size: 52px; font-weight: 800; line-height: 1; margin-bottom: 10px; }
-        .pkg-subtext-red { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
-        .pkg-location-red { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; margin-bottom: 25px; }
+        .bde-card-header { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+        .bde-icon { font-size: 40px; }
+        .bde-icon.silver { color: #9CA3AF; }
+        .bde-icon.gold { color: #F59E0B; }
+        .bde-icon.platinum { color: #3B82F6; }
         
-        .pkg-btn-red { display: block; width: 100%; background: white; color: var(--primary-dark); text-align: center; padding: 12px; border-radius: 6px; font-weight: 700; font-size: 14px; text-transform: uppercase; border: none; cursor: pointer; transition: 0.3s; }
-        .pkg-btn-red:hover { background: #F3F4F6; }
+        .bde-title-wrap { flex-grow: 1; }
+        .bde-title-wrap h3 { font-size: 24px; font-weight: 700; margin-bottom: 2px; }
+        .bde-title-wrap h3.silver-text { color: #6B7280; }
+        .bde-title-wrap h3.gold-text { color: #D97706; }
+        .bde-title-wrap h3.platinum-text { color: #1D4ED8; }
+        .bde-title-wrap p { font-size: 13px; color: #4B5563; font-weight: 600; }
+        
+        .bde-price { font-size: 32px; font-weight: 800; color: #111827; margin-bottom: 20px; }
+        .bde-price span { font-size: 14px; font-weight: 600; color: #6B7280; }
+        
+        .bde-desc { font-size: 14px; color: #4B5563; margin-bottom: 20px; line-height: 1.5; min-height: 60px; }
+        
+        .bde-list { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+        .bde-list li { font-size: 14px; color: #374151; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
+        .bde-list li i { color: var(--brand-red); font-size: 16px; margin-top: 2px; }
+        
+        .bde-footer { border-top: 1px solid #E5E7EB; padding-top: 20px; margin-top: auto; }
+        .bde-footer-item { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; color: #111827; margin-bottom: 15px; }
+        .bde-footer-item i { color: var(--brand-red); font-size: 16px; }
+        
+        .bde-btn { display: block; width: 100%; background: var(--brand-red); color: white; text-align: center; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: 0.3s; }
+        .bde-btn:hover { background: var(--brand-red-hover); }
 
-        .pkg-features-red { padding: 30px 25px; background: #F9FAFB; flex-grow: 1; }
-        .pkg-features-red ul li { display: flex; gap: 12px; font-size: 15px; color: #1F2937; margin-bottom: 15px; font-weight: 500; }
-        .pkg-features-red ul li i { color: var(--brand-red); font-size: 18px; margin-top: 2px; }
+        /* Popular Badge */
+        .bde-popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--brand-red);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 15px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 4px 10px rgba(202, 53, 53, 0.3);
+        }
+
+        /* Call Banner */
+        .bde-call-banner { background: #FEF2F2; border: 1px solid #FECACA; border-radius: 12px; padding: 15px 25px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+        .bde-call-icon { background: #991B1B; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .bde-call-banner p { font-size: 15px; color: #374151; margin: 0; font-weight: 600; }
+        .bde-call-banner p a { color: #991B1B; text-decoration: underline; }
+
+        /* Comparison Table */
+        .bde-table-wrapper { overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #E5E7EB; }
+        .bde-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        .bde-table th, .bde-table td { padding: 15px 20px; text-align: center; border-bottom: 1px solid #E5E7EB; font-size: 14px; }
+        .bde-table th { background: #991B1B; color: white; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+        .bde-table th:first-child, .bde-table td:first-child { text-align: left; font-weight: 600; color: #111827; }
+        .bde-table td { color: #4B5563; }
+        .bde-table tr:last-child td { border-bottom: none; background: #FEF2F2; font-weight: 700; color: #111827; }
+        .bde-table i.fa-check-circle { color: #CA3535; font-size: 16px; margin-right: 5px; }
+        .bde-table i.fa-times-circle { color: #9CA3AF; font-size: 16px; margin-right: 5px; }
+        .bde-table .feature-title { display: flex; align-items: center; gap: 10px; }
+        .bde-table .feature-title i { color: #CA3535; font-size: 16px; }
+
 
         /* --- MINISTRY APPROVED SECTION --- */
         .ministry-section { background: white; padding: 80px 0; }
@@ -467,7 +647,7 @@
         .alt-pkg-btn { display: block; width: 100%; background: #F3F4F6; color: var(--primary-dark); text-align: center; padding: 12px; border-radius: 6px; font-weight: 700; font-size: 15px; transition: 0.3s; border: none; cursor: pointer; }
         .alt-pkg-btn:hover { background: var(--brand-red); color: white; }
 
-        /* --- GOOGLE REVIEWS (Infinite Slider) --- */
+        /* --- GOOGLE REVIEWS --- */
         .google-reviews-section { background: var(--bg-light); padding: 80px 0; overflow: hidden; }
         .gr-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
         .gr-title h2 { font-size: 32px; }
@@ -595,11 +775,10 @@
            RESPONSIVE — MOBILE FIXES
            ============================================ */
 
-        /* --- LARGE TABLETS & SMALL DESKTOPS (max 1024px) --- */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 40px; }
-            .steps-container-new { grid-template-columns: repeat(2, 1fr); gap: 40px; }
-            .steps-container-new::before { display: none; }
+            .steps-container-new { grid-template-columns: repeat(2, 1fr); gap: 30px; row-gap: 50px; }
+            .bde-cards-grid { grid-template-columns: repeat(2, 1fr); }
             .gr-card { width: 320px; }
             .packages-grid-red, .ministry-grid { grid-template-columns: 1fr 1fr; }
             .alt-package-list { grid-template-columns: 1fr; }
@@ -607,9 +786,7 @@
             .new-top-bar-inner { justify-content: center; gap: 25px; }
         }
 
-        /* --- MOBILE & TABLETS (max 768px) --- */
         @media (max-width: 768px) {
-            /* Header & Nav Fixes */
             .header-inner {
                 flex-direction: row;
                 justify-content: space-between;
@@ -626,67 +803,91 @@
             .logo-img { height: 35px; }
             .company-text { font-size: 14px; }
             
-            /* Show Mobile Menu Elements */
             .nav-links { display: none; }
             .header-contact-card { display: none; }
             .mobile-menu-btn { display: block; margin-left: auto; }
 
-            /* Hero Mobile Fixes */
             .hero {
                 background-attachment: scroll;
                 padding: 60px 0 70px;
+                background: 
+                    linear-gradient(180deg, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.6) 100%),
+                    url('/slider.png');
+                background-size: cover;
+                background-position: center;
             }
             .hero h1 { font-size: 32px; }
             .hero p { font-size: 16px; }
-            .hero-buttons { flex-direction: column; width: 100%; gap: 12px; }
-            .hero-buttons .btn { width: 100%; }
+            
+            .hero-btn-primary, .hero-btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
 
-            /* Top Bar Mobile Fixes (2 items per row) */
-            .new-top-bar { padding: 20px 0; }
+            /* --- NEW TOP BAR MOBILE GRID (2x2) --- */
+            .new-top-bar { 
+                padding: 20px 0; 
+                background: #fff;
+            }
             .new-top-bar-inner {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr); /* 2 columns */
-                gap: 15px;
+                grid-template-columns: 1fr 1fr; 
+                gap: 20px 10px;
                 padding: 0 15px;
-                justify-items: start;
-            }
-            .new-top-item { 
-                width: 100%; 
-                justify-content: flex-start; 
-                gap: 10px; 
-                align-items: flex-start;
-                text-align: left;
-            }
-            /* Center the last item (5th) if it's alone */
-            .new-top-item:last-child:nth-child(odd) {
-                grid-column: 1 / -1;
                 justify-content: center;
-                text-align: center;
-                flex-direction: column;
                 align-items: center;
             }
-            
-            .new-top-icon { font-size: 24px; margin-top: 2px; }
-            .new-top-text { font-size: 13px; }
+            .new-top-item {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+                gap: 10px;
+                width: 100%;
+            }
+            .new-top-item:nth-child(5) {
+                display: none; 
+            }
+            .custom-icon-img { 
+                width: 35px; 
+                height: 35px;
+            }
+            .new-top-text { 
+                font-size: 13px; 
+                text-align: center;
+            }
 
             .section-padding { padding: 60px 0; }
             .section-title { font-size: 28px; }
             .section-subtitle { font-size: 15px; margin-bottom: 30px; }
 
             /* Steps Mobile */
-            .steps-container-new { grid-template-columns: 1fr; gap: 30px; }
+            .steps-section-wrapper { padding: 60px 0; }
             .steps-header h2 { font-size: 28px; }
-            .step-item-new { max-width: 360px; margin: 0 auto; width: 100%; }
-            .step-card-new { height: auto; }
+            .steps-container-new { 
+                grid-template-columns: 1fr; 
+                gap: 40px; 
+                max-width: 400px; 
+            }
+            .step-circle-wrapper { 
+                width: 110px; 
+                height: 110px; 
+            }
+            .step-card-new { 
+                padding: 50px 20px 20px 20px; 
+            }
 
-            /* Why Choose Us Mobile (2x2) */
+            /* BDE Mobile */
+            .bde-cards-grid { grid-template-columns: 1fr; }
+            .bde-header h2 { font-size: 28px; }
+            .bde-price { font-size: 28px; }
+            .bde-table-wrapper { margin: 0 -15px; border-radius: 0; border-left: none; border-right: none; }
+
             .features-grid-new { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .feature-box-new { padding: 20px 15px; }
             .feature-icon-new { font-size: 32px; margin-bottom: 10px; }
             .feature-box-new h4 { font-size: 16px; margin-bottom: 8px; }
             .feature-box-new p { font-size: 13px; }
 
-            /* Google Reviews Mobile */
             .gr-cards-wrapper { animation-duration: 25s; }
             .gr-card { width: 280px; padding: 18px; }
 
@@ -705,7 +906,6 @@
             .faq-question { font-size: 15px; }
             .faq-answer { font-size: 14px; }
 
-            /* CTA Section Image First */
             .cta-wrapper { flex-direction: column-reverse; gap: 30px; }
             .cta-text h2 { font-size: 30px; }
             .cta-contact-info p { font-size: 16px; }
@@ -715,7 +915,6 @@
             .map-wrapper { height: 300px; }
             .map-overlay { font-size: 12px; padding: 8px 14px; top: 12px; left: 12px; }
 
-            /* Footer Mobile Grid */
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 25px; }
             .footer-col:first-child { grid-column: 1 / -1; }
             .footer-col:last-child { grid-column: 1 / -1; }
@@ -725,20 +924,13 @@
             .footer-bottom { font-size: 13px; }
         }
 
-        /* --- SMALL PHONES (max 480px) & iPHONE MINI (375px) --- */
         @media (max-width: 480px) {
             .container { padding: 0 15px; }
             .hero h1 { font-size: 26px; line-height: 1.25; }
             .hero p { font-size: 14px; margin-bottom: 25px; }
-            .hero-buttons .btn { padding: 12px 20px; font-size: 14px; }
+            .hero-btn-primary, .hero-btn-secondary { padding: 14px 20px; font-size: 15px; }
             .section-title { font-size: 24px; }
             .section-subtitle { font-size: 14px; }
-
-            /* Top Bar Mobile Fixes (Keep 2 columns on 480px) */
-            .new-top-bar-inner {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
 
             .course-grid-new { grid-template-columns: 1fr; gap: 20px; }
             .course-card-new { padding: 18px; }
@@ -755,13 +947,18 @@
             .feature-icon-new { font-size: 28px; }
 
             .steps-header h2 { font-size: 24px; }
-            .step-circle-wrapper { width: 80px; height: 80px; }
-            .step-icon { font-size: 32px; }
-            .step-number-badge { width: 28px; height: 28px; font-size: 14px; }
-            .step-card-new { padding: 20px 15px 15px; }
-            .step-card-new h4 { font-size: 15px; }
-            .step-card-new p { font-size: 12px; }
-            .step-bottom-new { font-size: 11px; }
+            .step-circle-wrapper { width: 90px; height: 90px; margin-bottom: -20px; }
+            .step-card-new { padding: 40px 15px 15px; }
+            .step-card-new h4 { font-size: 16px; }
+            .step-card-new p { font-size: 13px; }
+            .step-bottom-new { font-size: 12px; gap: 8px; }
+            .step-bottom-img { width: 20px; height: 20px; }
+
+            .bde-card { padding: 20px; }
+            .bde-title-wrap h3 { font-size: 20px; }
+            .bde-price { font-size: 26px; }
+            .bde-table th, .bde-table td { padding: 12px 10px; font-size: 12px; }
+            .bde-table th { font-size: 11px; }
 
             .pkg-top-red { padding: 20px 18px; }
             .pkg-top-red h3 { font-size: 18px; }
@@ -817,25 +1014,15 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
-        /* --- iPHONE MINI (375px width) EXTRA TIGHTENING --- */
         @media (max-width: 375px) {
             .container { padding: 0 12px; }
             .hero h1 { font-size: 23px; }
             .hero p { font-size: 13px; }
             .section-title { font-size: 22px; }
 
-            /* Top Bar Mobile Fixes (1 column on iPhone Mini) */
-            .new-top-bar-inner {
-                grid-template-columns: 1fr; /* 1 column */
-                gap: 12px;
-            }
-            .new-top-item:last-child:nth-child(odd) {
-                align-items: flex-start;
-                text-align: left;
-                flex-direction: row;
-            }
-            .new-top-text { font-size: 12px; }
-            .new-top-icon { font-size: 22px; }
+            .new-top-bar-inner { gap: 15px 5px; }
+            .custom-icon-img { width: 30px; height: 30px; }
+            .new-top-text { font-size: 11px; }
 
             .features-grid-new { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .feature-box-new { padding: 12px 8px; }
@@ -855,7 +1042,6 @@
             .cta-contact-info p { font-size: 14px; }
         }
 
-        /* Fix overflow for small screens */
         @media (max-width: 768px) {
             .header-contact-card, .hero-content, .new-top-text, .step-card-new, .course-card-new, .pkg-top-red, .alt-package-card, .footer-col {
                 word-break: break-word;
@@ -909,36 +1095,47 @@
         <div class="container">
             <div class="hero-content animate fade-in-up">
                 <h1>Pass Your G2 Or G With Confidence At An MTO Approved Driving School In Scarborough</h1>
-                <p>Beginner Driver Education, private driving lessons, and G2/G road test preparation from certified instructors. Online, in-class, and in-car training available across Scarborough and the GTA.</p>
+                <p>Beginner Driver Education, private driving lessons, and G2/G road test preparation from certified instructors. Online, in-class, and in-car training available across Scarborough, Pickering, and Ajax.</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-red">Book Your First Lesson <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></button>
-                    <button class="btn btn-outline">Explore Packages</button>
+                    <button class="hero-btn-primary">
+                        Book Your First Lesson 
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="hero-btn-secondary">
+                        Explore Packages
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- NEW TOP BAR -->
+    <!-- NEW TOP BAR (IMAGES INSTEAD OF ICONS) -->
     <section class="new-top-bar">
         <div class="container new-top-bar-inner">
             <div class="new-top-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <i class="fas fa-certificate new-top-icon"></i>
+                <!-- Replace src with your actual image path -->
+                <img src="icon_1.png" alt="MTO Approved" class="custom-icon-img">
                 <div class="new-top-text">MTO-Approved &<br>Licensed</div>
             </div>
             <div class="new-top-item animate fade-in-up" style="transition-delay: 0.2s;">
-                <i class="fas fa-star new-top-icon"></i>
+                <!-- Replace src with your actual image path -->
+                <img src="icon_2.png" alt="Google Reviews" class="custom-icon-img">
                 <div class="new-top-text">900+ 5 Star Google<br>Reviews</div>
             </div>
             <div class="new-top-item animate fade-in-up" style="transition-delay: 0.3s;">
-                <i class="fas fa-award new-top-icon"></i>
+                <!-- Replace src with your actual image path -->
+                <img src="icon_3.png" alt="Canadian Choice Award" class="custom-icon-img">
                 <div class="new-top-text">Canadian Choice Award<br>Winner 2025-2026</div>
             </div>
             <div class="new-top-item animate fade-in-up" style="transition-delay: 0.4s;">
-                <i class="fas fa-steering-wheel new-top-icon"></i>
+                <!-- Replace src with your actual image path -->
+                <img src="icon_4.png" alt="Top 3 Driving Schools" class="custom-icon-img">
                 <div class="new-top-text">Top 3 Driving Schools by<br>Three Best Rated Website</div>
             </div>
+            <!-- This 5th item will hide on mobile -->
             <div class="new-top-item animate fade-in-up" style="transition-delay: 0.5s;">
-                <i class="fas fa-users new-top-icon"></i>
+                <!-- Replace src with your actual image path -->
+                <img src="icon_5.png" alt="Former DriveTest Examiners" class="custom-icon-img">
                 <div class="new-top-text">Former DriveTest<br>Examiners</div>
             </div>
         </div>
@@ -1019,7 +1216,7 @@
                 <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.5s;">
                     <div class="feature-icon-new"><i class="fas fa-tag"></i></div>
                     <h4>Free Pickup & Drop-off</h4>
-                    <p>We collect you from home, school, or work across Scarborough and the GTA.</p>
+                    <p>We collect you from home, school, or work across Scarborough, Pickering, and Ajax.</p>
                 </div>
                 <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.6s;">
                     <div class="feature-icon-new"><i class="fas fa-laptop-code"></i></div>
@@ -1030,7 +1227,7 @@
         </div>
     </section>
 
-    <!-- STEPS SECTION -->
+    <!-- STEPS SECTION (CLEANED UP) -->
     <section class="steps-section-wrapper">
         <div class="container">
             <div class="steps-header">
@@ -1038,58 +1235,70 @@
             </div>
             
             <div class="steps-container-new">
+                <!-- Step 1 -->
                 <div class="step-item-new animate zoom-in" style="transition-delay: 0.1s;">
                     <div class="step-circle-wrapper">
-                        <i class="fas fa-key step-icon"></i>
-                        <div class="step-number-badge">1</div>
+                        <!-- Put your image with the number 1 here -->
+                        <img src="ChatGPT 1.png" alt="Step 1" class="step-img">
                     </div>
                     <div class="step-card-new">
                         <h4>Choose Your Package:</h4>
                         <p>Pick Silver, Gold, or Platinum based on your goals.</p>
                         <div class="step-bottom-new">
-                            <i class="fas fa-money-bill-wave"></i> Flexible payment options
+                            <!-- Put your bottom icon here -->
+                            <img src="ChatGPT2.png" alt="PayPal" class="step-bottom-img">
+                            Flexible payment options
                         </div>
                     </div>
                 </div>
 
+                <!-- Step 2 -->
                 <div class="step-item-new animate zoom-in" style="transition-delay: 0.2s;">
                     <div class="step-circle-wrapper">
-                        <i class="fas fa-laptop step-icon"></i>
-                        <div class="step-number-badge">2</div>
+                        <!-- Put your image with the number 2 here -->
+                        <img src="ChatGPT2.png" alt="Step 2" class="step-img">
                     </div>
                     <div class="step-card-new">
                         <h4>Start Your Online BDE:</h4>
                         <p>Begin the MTO-approved BDE course at your own pace in 9 languages.</p>
                         <div class="step-bottom-new">
-                            <i class="fas fa-globe"></i> 9 languages available
+                            <!-- Put your bottom icon here -->
+                            <img src="globe-icon.png" alt="Globe" class="step-bottom-img">
+                            9 languages available
                         </div>
                     </div>
                 </div>
 
+                <!-- Step 3 -->
                 <div class="step-item-new animate zoom-in" style="transition-delay: 0.3s;">
                     <div class="step-circle-wrapper">
-                        <i class="fas fa-users step-icon"></i>
-                        <div class="step-number-badge">3</div>
+                        <!-- Put your image with the number 3 here -->
+                        <img src="ChatGPT3.png" alt="Step 3" class="step-img">
                     </div>
                     <div class="step-card-new">
                         <h4>In-Car Lessons:</h4>
                         <p>One-on-one training, tailored to your pace, with free pickup and drop-off.</p>
                         <div class="step-bottom-new">
-                            <i class="fas fa-car"></i> Free pickup & drop-off
+                            <!-- Put your bottom icon here -->
+                            <img src="car-icon.png" alt="Car" class="step-bottom-img">
+                            Free pickup & drop-off
                         </div>
                     </div>
                 </div>
 
+                <!-- Step 4 -->
                 <div class="step-item-new animate zoom-in" style="transition-delay: 0.4s;">
                     <div class="step-circle-wrapper">
-                        <i class="fas fa-trophy step-icon"></i>
-                        <div class="step-number-badge">4</div>
+                        <!-- Put your image with the number 4 here -->
+                        <img src="ChatGPT4.png" alt="Step 4" class="step-img">
                     </div>
                     <div class="step-card-new">
                         <h4>Pass Your Test:</h4>
                         <p>Use our instructor's car for the road test and walk out with your license.</p>
                         <div class="step-bottom-new">
-                            <i class="fas fa-shield-alt"></i> Your Success. Our Promise.
+                            <!-- Put your bottom icon here -->
+                            <img src="shield-icon.png" alt="Shield" class="step-bottom-img">
+                            Your Success. Our Promise.
                         </div>
                     </div>
                 </div>
@@ -1097,80 +1306,157 @@
         </div>
     </section>
 
-    <!-- PACKAGES -->
-    <section class="packages-section-red">
+    <!-- NEW BDE PACKAGES SECTION (REPLACED) -->
+    <section class="bde-package-section">
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-title animate fade-in-up">Our Driving Packages</h2>
-                <p class="section-subtitle animate fade-in-up" style="transition-delay: 0.1s;">Choose the perfect plan to get you on the road safely and confidently.</p>
+            <div class="bde-header animate fade-in-up">
+                <h2>Choose Your <span>BDE Package</span></h2>
+                <p>All packages include 30 hours of MTO-approved online training, certified in-car lessons, free pickup & drop-off, and insurance-eligible completion.</p>
             </div>
-            
-            <div class="packages-grid-red">
-                <!-- Silver -->
-                <div class="package-card-red animate fade-in-left" style="transition-delay: 0.1s;">
-                    <div class="pkg-top-red">
-                        <h3>Silver Package</h3>
-                        <div class="pkg-price-red">$599</div>
-                        <div class="pkg-subtext-red">+ HST & Certification Charges.</div>
-                        <div class="pkg-location-red"><i class="fas fa-map-marker-alt"></i> Scarborough</div>
-                        <button class="pkg-btn-red">BUY NOW</button>
+
+            <div class="bde-cards-grid">
+                <!-- Silver Card -->
+                <div class="bde-card animate fade-in-left" style="transition-delay: 0.1s;">
+                    <div class="bde-card-header">
+                        <i class="fas fa-shield-alt bde-icon silver"></i>
+                        <div class="bde-title-wrap">
+                            <h3 class="silver-text">Silver</h3>
+                            <p>Essential Start</p>
+                        </div>
                     </div>
-                    <div class="pkg-features-red">
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> 20 Hours Online Lessons</li>
-                            <li><i class="fas fa-check-circle"></i> 10 Hours of Home-Link Activities</li>
-                            <li><i class="fas fa-check-circle"></i> 10 Hours of In-Vehicle Training</li>
-                            <li><i class="fas fa-check-circle"></i> One & One Training</li>
-                            <li><i class="fas fa-check-circle"></i> Road Test Booking Help</li>
-                            <li><i class="fas fa-check-circle"></i> Free Pickup & Drop Up</li>
-                            <li><i class="fas fa-check-circle"></i> Certificate fees Includes</li>
-                        </ul>
+                    <div class="bde-price">$ 565 <span>+ HST</span></div>
+                    <p class="bde-desc">Best for new beginners who want the essential BDE package</p>
+                    
+                    <ul class="bde-list">
+                        <li><i class="fas fa-check-circle"></i> MTO-approved online course</li>
+                        <li><i class="fas fa-check-circle"></i> 10 hours in-car lessons</li>
+                        <li><i class="fas fa-check-circle"></i> Free pickup & drop-off</li>
+                        <li><i class="fas fa-check-circle"></i> Insurance-eligible completion</li>
+                        <li><i class="fas fa-check-circle"></i> Affordable entry point</li>
+                    </ul>
+                    
+                    <div class="bde-footer">
+                        <div class="bde-footer-item">
+                            <i class="fas fa-car"></i> Free pickup & drop-off across Durham Region
+                        </div>
+                        <button class="bde-btn">Get Started</button>
                     </div>
                 </div>
 
-                <!-- Gold -->
-                <div class="package-card-red animate fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="pkg-top-red">
-                        <h3>Gold Package</h3>
-                        <div class="pkg-price-red">$799.50</div>
-                        <div class="pkg-subtext-red">+ HST & Certification Charges.</div>
-                        <div class="pkg-location-red"><i class="fas fa-map-marker-alt"></i> Scarborough</div>
-                        <button class="pkg-btn-red">BUY NOW</button>
+                <!-- Gold Card -->
+                <div class="bde-card animate fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="bde-popular-badge"><i class="fas fa-award"></i> Most Popular</div>
+                    <div class="bde-card-header">
+                        <i class="fas fa-star bde-icon gold"></i>
+                        <div class="bde-title-wrap">
+                            <h3 class="gold-text">Gold</h3>
+                            <p>Test Day Car Included</p>
+                        </div>
                     </div>
-                    <div class="pkg-features-red">
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> 20 Hours Online Lessons</li>
-                            <li><i class="fas fa-check-circle"></i> 10 Hours of Home-Link Activities</li>
-                            <li><i class="fas fa-check-circle"></i> 10 Hours of In-Vehicle Training</li>
-                            <li><i class="fas fa-check-circle"></i> One & One Training</li>
-                            <li><i class="fas fa-check-circle"></i> Road Test Booking Help</li>
-                            <li><i class="fas fa-check-circle"></i> Free Pickup & Drop Up</li>
-                            <li><i class="fas fa-check-circle"></i> Certificate fees Includes</li>
-                        </ul>
+                    <div class="bde-price">$ 675 <span>+ HST</span></div>
+                    <p class="bde-desc">Best for most students who want added convenience and test-day support</p>
+                    
+                    <ul class="bde-list">
+                        <li><i class="fas fa-check-circle"></i> Everything in Silver</li>
+                        <li><i class="fas fa-check-circle"></i> Additional convenience</li>
+                        <li><i class="fas fa-check-circle"></i> Instructor vehicle included for road test</li>
+                        <li><i class="fas fa-check-circle"></i> 10 hours in-car lessons</li>
+                        <li><i class="fas fa-check-circle"></i> Stronger value for students close to test readiness</li>
+                    </ul>
+                    
+                    <div class="bde-footer">
+                        <div class="bde-footer-item">
+                            <i class="fas fa-car"></i> Free pickup & drop-off across Durham Region
+                        </div>
+                        <button class="bde-btn">Get Started</button>
                     </div>
                 </div>
 
-                <!-- Diamond -->
-                <div class="package-card-red animate fade-in-right" style="transition-delay: 0.3s;">
-                    <div class="pkg-top-red">
-                        <h3>Diamond Package</h3>
-                        <div class="pkg-price-red">$950</div>
-                        <div class="pkg-subtext-red">+ HST & Certification Charges.</div>
-                        <div class="pkg-location-red"><i class="fas fa-map-marker-alt"></i> Scarborough, Toronto</div>
-                        <button class="pkg-btn-red">BUY NOW</button>
+                <!-- Platinum Card -->
+                <div class="bde-card animate fade-in-right" style="transition-delay: 0.3s;">
+                    <div class="bde-card-header">
+                        <i class="fas fa-crown bde-icon platinum"></i>
+                        <div class="bde-title-wrap">
+                            <h3 class="platinum-text">Platinum</h3>
+                            <p>Most In-Car Hours</p>
+                        </div>
                     </div>
-                    <div class="pkg-features-red">
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> 20 Hours Online Lessons</li>
-                            <li><i class="fas fa-check-circle"></i> 10 Hours of Home-Link Activities</li>
-                            <li><i class="fas fa-check-circle"></i> 10 Hours of In-Vehicle Training</li>
-                            <li><i class="fas fa-check-circle"></i> One & One Training</li>
-                            <li><i class="fas fa-check-circle"></i> Car for Testing & Help</li>
-                            <li><i class="fas fa-check-circle"></i> Free Pickup & Drop Up</li>
-                            <li><i class="fas fa-check-circle"></i> Certificate fees Includes</li>
-                        </ul>
+                    <div class="bde-price">$ 750 <span>+ HST</span></div>
+                    <p class="bde-desc">Best for students who want extra practice and stronger road test confidence</p>
+                    
+                    <ul class="bde-list">
+                        <li><i class="fas fa-check-circle"></i> 12 hours in-car lessons</li>
+                        <li><i class="fas fa-check-circle"></i> Reduce Road Test Wait Time (8 Months)</li>
+                        <li><i class="fas fa-check-circle"></i> Eligible for Insurance discounts</li>
+                        <li><i class="fas fa-check-circle"></i> Free Pick up and Drop off</li>
+                        <li><i class="fas fa-check-circle"></i> Instructor’s Vehicle for Road Test</li>
+                    </ul>
+                    
+                    <div class="bde-footer">
+                        <div class="bde-footer-item">
+                            <i class="fas fa-car"></i> Free pickup & drop-off across Durham Region
+                        </div>
+                        <button class="bde-btn">Get Started</button>
                     </div>
                 </div>
+            </div>
+
+            <!-- Call Banner -->
+            <div class="bde-call-banner animate fade-in-up">
+                <div class="bde-call-icon"><i class="fas fa-phone-alt"></i></div>
+                <p>Not sure which package is right for you? <a href="tel:905-922-2544">Call 905-922-2544</a> and we’ll help you choose.</p>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="bde-table-wrapper animate fade-in-up">
+                <table class="bde-table">
+                    <thead>
+                        <tr>
+                            <th>FEATURES</th>
+                            <th>SILVER</th>
+                            <th>GOLD</th>
+                            <th>PLATINUM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="feature-title"><i class="fas fa-laptop"></i> Online Training</span></td>
+                            <td><i class="fas fa-check-circle"></i> 30 hours</td>
+                            <td><i class="fas fa-check-circle"></i> 30 hours</td>
+                            <td><i class="fas fa-check-circle"></i> 30 hours</td>
+                        </tr>
+                        <tr>
+                            <td><span class="feature-title"><i class="fas fa-car-side"></i> In-car lessons</span></td>
+                            <td><i class="fas fa-check-circle"></i> 10 hours</td>
+                            <td><i class="fas fa-check-circle"></i> 10 hours</td>
+                            <td><i class="fas fa-check-circle"></i> 12 hours</td>
+                        </tr>
+                        <tr>
+                            <td><span class="feature-title"><i class="fas fa-car-crash"></i> Road test car</span></td>
+                            <td><i class="fas fa-times-circle"></i> Not included</td>
+                            <td><i class="fas fa-check-circle"></i> Included</td>
+                            <td><i class="fas fa-check-circle"></i> Included</td>
+                        </tr>
+                        <tr>
+                            <td><span class="feature-title"><i class="fas fa-map-marker-alt"></i> Pickup & drop-off</span></td>
+                            <td><i class="fas fa-check-circle"></i> Free across Durham Region</td>
+                            <td><i class="fas fa-check-circle"></i> Free across Durham Region</td>
+                            <td><i class="fas fa-check-circle"></i> Free across Durham Region</td>
+                        </tr>
+                        <tr>
+                            <td><span class="feature-title"><i class="fas fa-file-invoice"></i> Insurance certificate</span></td>
+                            <td><i class="fas fa-check-circle"></i> Included</td>
+                            <td><i class="fas fa-check-circle"></i> Included</td>
+                            <td><i class="fas fa-check-circle"></i> Included</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>$565</td>
+                            <td>$675</td>
+                            <td>$750</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -1451,7 +1737,7 @@
             <div class="cta-wrapper">
                 <!-- Text and Buttons -->
                 <div class="cta-text animate fade-in-left">
-                    <div class="loc-header-text"><i class="fas fa-map-marker-alt"></i> SERVING OSHAWA & DURHAM REGION</div>
+                    <div class="loc-header-text"><i class="fas fa-map-marker-alt"></i> SERVING SCARBOROUGH, PICKERING & AJAX</div>
                     <h2>Ready to Start Your First Driving Lesson?</h2>
                     <p>Book your first lesson today and get expert guidance for your G2, G, or BDE journey.</p>
                     
@@ -1469,7 +1755,7 @@
                             <div class="cta-contact-icon"><i class="fas fa-envelope"></i></div>
                             <div class="cta-contact-info">
                                 <h4>Email Us</h4>
-                                <p>info@championsdrivingacademy.ca</p>
+                                <p>info@newmethoddriving.ca</p>
                             </div>
                         </div>
                     </div>
@@ -1486,11 +1772,12 @@
     <section class="map-section">
         <div class="container">
             <div class="map-header animate fade-in-up">
-                <h2>Driving Lessons Across <span>Durham Region</span></h2>
-                <p>We offer certified G2, G, and BDE lessons with free pickup and drop-off in the following areas. Tap your city for local lesson details.</p>
+                <h2>Driving Lessons Across <span>Scarborough, Pickering & Ajax</span></h2>
+                <p>We offer certified G2, G, and BDE lessons with free pickup and drop-off in Scarborough, Pickering, and Ajax. Tap your city for local lesson details.</p>
             </div>
             <div class="map-wrapper animate zoom-in">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43053392.95168793!2d-135.7336815297594!3d48.80535736771116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0d03d337cc6ad9%3A0x9968b72aa2438fa5!2sCanada!5e0!3m2!1sen!2s!4v1793123877883!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                <!-- Updated Map iframe to center on Scarborough/Pickering/Ajax area -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92195.40676424889!2d-79.15865567048947!3d43.83933668148288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d0d6a8b2b4a7%3A0x4fb1c9ceb0b1f94f!2sPickering%2C%20ON!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 <div class="map-overlay">New Method Driving School</div>
             </div>
         </div>
@@ -1528,13 +1815,9 @@
                 <div class="footer-col animate fade-in-up" style="transition-delay: 0.3s;">
                     <h4>Service Areas</h4>
                     <ul>
-                        <li><a href="#">Ajax</a></li>
-                        <li><a href="#">Bowmanville</a></li>
-                        <li><a href="#">Courtice</a></li>
-                        <li><a href="#">Oshawa</a></li>
+                        <li><a href="#">Scarborough</a></li>
                         <li><a href="#">Pickering</a></li>
-                        <li><a href="#">Whitby</a></li>
-                        <li><a href="#" style="color: var(--brand-red);">Port Perry</a></li>
+                        <li><a href="#">Ajax</a></li>
                     </ul>
                 </div>
                 <div class="footer-col animate fade-in-up" style="transition-delay: 0.4s;">
@@ -1543,21 +1826,21 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <p style="font-weight: 700; color: white; margin-bottom: 3px;">Contact Details</p>
-                            <p>285 Taunton Rd. E, Oshawa, ON L1G 3V2</p>
+                            <p>Scarborough, ON</p>
                         </div>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-phone-alt"></i>
                         <div>
                             <p style="font-weight: 700; color: white; margin-bottom: 3px;">Phone Number</p>
-                            <p>+1 905 922 2544</p>
+                            <p>905-922-2544</p>
                         </div>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
                             <p style="font-weight: 700; color: white; margin-bottom: 3px;">Email</p>
-                            <p>info@championsdrivingacademy.ca</p>
+                            <p>info@newmethoddriving.ca</p>
                         </div>
                     </div>
                 </div>
