@@ -82,14 +82,19 @@
         .text-center { text-align: center; }
 
         /* --- ANIMATIONS --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+        .animate {
+            opacity: 0;
+            transition: all 1s ease-out;
         }
 
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease forwards;
-            opacity: 0; 
+        .fade-in-up { transform: translateY(40px); }
+        .fade-in-left { transform: translateX(-40px); }
+        .fade-in-right { transform: translateX(40px); }
+        .zoom-in { transform: scale(0.95); }
+
+        .animate.animated {
+            opacity: 1;
+            transform: translate(0) scale(1);
         }
 
         /* --- HEADER --- */
@@ -110,6 +115,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
+            position: relative;
         }
 
         .logo-wrapper {
@@ -132,14 +138,10 @@
             flex-direction: column;
         }
 
-        .company-text .line1 {
-            color: var(--brand-red); /* Brand Red */
-        }
+        .company-text .line1 { color: var(--brand-red); }
+        .company-text .line2 { color: #111827; }
 
-        .company-text .line2 {
-            color: #111827; /* Black */
-        }
-
+        /* Navigation */
         .nav-links { display: flex; gap: 25px; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
         .nav-links a { position: relative; transition: color 0.3s; }
         .nav-links a::after {
@@ -183,6 +185,40 @@
             color: var(--primary-dark); 
             line-height: 1.2;
         }
+
+        /* Mobile Menu Toggle Button */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 28px;
+            color: var(--primary-dark);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        .mobile-menu-btn:hover { color: var(--brand-red); }
+
+        /* Mobile Dropdown Menu */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 0 0 15px 15px;
+            padding: 20px 0;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            z-index: 99;
+            border-top: 1px solid #E5E7EB;
+        }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { font-weight: 700; font-size: 16px; color: var(--primary-dark); text-transform: uppercase; width: 100%; text-align: center; padding: 10px 0; }
+        .mobile-menu a:hover { color: var(--brand-red); background: var(--bg-light); }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -363,8 +399,8 @@
             border: 1px solid #F3F4F6; 
             transition: all 0.3s ease; 
             margin-top: 10px; 
-            flex-grow: 1; /* Makes all cards equal height */
-            height: calc(100% - 110px); /* Adjust based on icon size */
+            flex-grow: 1;
+            height: calc(100% - 110px);
         }
         .step-card-new h4 { font-size: 16px; color: #111827; margin-bottom: 15px; font-weight: 700; }
         .step-card-new p { font-size: 13px; color: #6B7280; margin-bottom: 30px; flex-grow: 1; line-height: 1.5; }
@@ -457,9 +493,7 @@
             animation: scrollLeft 30s linear infinite;
         }
 
-        .gr-slider-container:hover .gr-cards-wrapper {
-            animation-play-state: paused;
-        }
+        .gr-slider-container:hover .gr-cards-wrapper { animation-play-state: paused; }
 
         @keyframes scrollLeft {
             0% { transform: translateX(0); }
@@ -501,7 +535,7 @@
         .faq-item.active .faq-question i { transform: rotate(180deg); }
 
         /* --- CTA & MAP --- */
-        .cta-section { padding: 80px 0; background: white; }
+        .cta-section { padding: 80px 0; background: #F8FAFC; }
         .cta-wrapper { display: flex; gap: 60px; align-items: center; flex-wrap: wrap; }
         .cta-text { flex: 1; min-width: 280px; }
         .cta-text h2 { font-size: 42px; line-height: 1.1; margin-bottom: 20px; }
@@ -528,25 +562,9 @@
         footer { background: var(--primary-dark); color: #94A3B8; padding: 80px 0 30px; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 60px; }
         
-        /* Updated Footer Logo Wrapper */
-        .footer-logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        /* Make logo image look sharp with original colors on a white background */
-        .footer-logo-img { 
-            height: 50px; 
-            width: auto; 
-            object-fit: contain; 
-            background: white; /* White box effect */
-            padding: 5px;
-            border-radius: 8px;
-        }
+        .footer-logo-wrapper { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .footer-logo-img { height: 50px; width: auto; object-fit: contain; background: white; padding: 5px; border-radius: 8px; }
         
-        /* Updated footer text colors */
         .footer-company-text {
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
@@ -557,14 +575,8 @@
             display: flex;
             flex-direction: column;
         }
-
-        .footer-company-text .line1 {
-            color: var(--brand-red); /* Brand Red */
-        }
-
-        .footer-company-text .line2 {
-            color: white; /* White in footer */
-        }
+        .footer-company-text .line1 { color: var(--brand-red); }
+        .footer-company-text .line2 { color: white; }
         
         .footer-col p { font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
         .social-links { display: flex; gap: 10px; }
@@ -580,7 +592,7 @@
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; text-align: center; font-size: 14px; }
 
         /* ============================================
-           RESPONSIVE — MOBILE FIXES & SLIDERS
+           RESPONSIVE — MOBILE FIXES
            ============================================ */
 
         /* --- LARGE TABLETS & SMALL DESKTOPS (max 1024px) --- */
@@ -588,25 +600,22 @@
             .hero h1 { font-size: 40px; }
             .steps-container-new { grid-template-columns: repeat(2, 1fr); gap: 40px; }
             .steps-container-new::before { display: none; }
-            
             .gr-card { width: 320px; }
-            
             .packages-grid-red, .ministry-grid { grid-template-columns: 1fr 1fr; }
-            .cta-wrapper { flex-direction: column; }
             .alt-package-list { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
             .new-top-bar-inner { justify-content: center; gap: 25px; }
-            .new-top-item { width: auto; margin-bottom: 0; flex: 0 0 auto; }
         }
 
         /* --- MOBILE & TABLETS (max 768px) --- */
         @media (max-width: 768px) {
-            /* Header Mobile Fixes: Row layout, centered */
+            /* Header & Nav Fixes */
             .header-inner {
                 flex-direction: row;
                 justify-content: space-between;
                 gap: 10px;
                 text-align: left;
+                padding-bottom: 5px;
             }
             .logo-wrapper {
                 flex-direction: row;
@@ -615,26 +624,24 @@
                 width: auto;
             }
             .logo-img { height: 35px; }
-            .company-text {
-                font-size: 14px;
-                line-height: 1.1;
-            }
+            .company-text { font-size: 14px; }
+            
+            /* Show Mobile Menu Elements */
             .nav-links { display: none; }
-            .header-contact-card { 
-                display: none; /* Hide on mobile to save space, as requested */
-            }
+            .header-contact-card { display: none; }
+            .mobile-menu-btn { display: block; margin-left: auto; }
 
-            /* Hero Mobile Fixes: Tighter padding */
+            /* Hero Mobile Fixes */
             .hero {
                 background-attachment: scroll;
-                padding: 60px 0 70px; /* Reduced padding */
+                padding: 60px 0 70px;
             }
             .hero h1 { font-size: 32px; }
             .hero p { font-size: 16px; }
             .hero-buttons { flex-direction: column; width: 100%; gap: 12px; }
             .hero-buttons .btn { width: 100%; }
 
-            /* Top Bar Mobile Fixes: Stacked cleanly */
+            /* Top Bar Mobile */
             .new-top-bar { padding: 15px 0; }
             .new-top-bar-inner { flex-direction: column; gap: 12px; align-items: flex-start; padding: 0 15px; }
             .new-top-item { width: 100%; justify-content: flex-start; gap: 12px; }
@@ -659,13 +666,8 @@
             .feature-box-new p { font-size: 13px; }
 
             /* Google Reviews Mobile */
-            .gr-cards-wrapper {
-                animation-duration: 25s;
-            }
-            .gr-card { 
-                width: 280px;
-                padding: 18px; 
-            }
+            .gr-cards-wrapper { animation-duration: 25s; }
+            .gr-card { width: 280px; padding: 18px; }
 
             .packages-grid-red, .ministry-grid { grid-template-columns: 1fr; }
             .pkg-price-red { font-size: 42px; }
@@ -682,25 +684,20 @@
             .faq-question { font-size: 15px; }
             .faq-answer { font-size: 14px; }
 
+            /* CTA Section Image First */
+            .cta-wrapper { flex-direction: column-reverse; gap: 30px; }
             .cta-text h2 { font-size: 30px; }
             .cta-contact-info p { font-size: 16px; }
             .cta-image img { border-radius: 16px; }
+            .cta-text .btn { width: 100%; }
 
             .map-wrapper { height: 300px; }
             .map-overlay { font-size: 12px; padding: 8px 14px; top: 12px; left: 12px; }
 
-            /* Footer Mobile Grid: Side by Side Quick Links & Service Areas */
-            .footer-grid { 
-                grid-template-columns: 1fr 1fr; /* 2 columns */
-                gap: 25px; 
-            }
-            .footer-col:first-child {
-                grid-column: 1 / -1; /* Logo takes full width */
-            }
-            .footer-col:last-child {
-                grid-column: 1 / -1; /* Contact Details takes full width */
-            }
-            
+            /* Footer Mobile Grid */
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 25px; }
+            .footer-col:first-child { grid-column: 1 / -1; }
+            .footer-col:last-child { grid-column: 1 / -1; }
             .footer-col h4 { margin-bottom: 15px; font-size: 16px; }
             .footer-logo-img { height: 45px; }
             .footer-company-text { font-size: 18px; }
@@ -779,7 +776,6 @@
             .cta-contact-icon { width: 42px; height: 42px; font-size: 16px; }
             .cta-contact-info h4 { font-size: 12px; }
             .cta-contact-info p { font-size: 15px; }
-            .cta-text .btn { width: 100%; }
 
             .map-header h2 { font-size: 24px; }
             .map-wrapper { height: 250px; }
@@ -791,8 +787,6 @@
             .footer-col ul li { font-size: 14px; }
             .footer-contact-item div p { font-size: 14px; }
             .footer-bottom { font-size: 12px; }
-            
-            /* Keep footer 2 columns on smaller screens */
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
@@ -857,13 +851,26 @@
                 <span>Book Your Lessons Today!</span>
                 <div class="header-phone">416-555-0192</div>
             </div>
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Packages</a>
+            <a href="#">Areas</a>
+            <a href="#">Reviews</a>
+            <a href="#">Contact</a>
         </div>
     </header>
 
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content fade-in-up">
+            <div class="hero-content animate fade-in-up">
                 <h1>Pass Your G2 Or G With Confidence At An MTO Approved Driving School In Scarborough</h1>
                 <p>Beginner Driver Education, private driving lessons, and G2/G road test preparation from certified instructors. Online, in-class, and in-car training available across Scarborough and the GTA.</p>
                 <div class="hero-buttons">
@@ -877,23 +884,23 @@
     <!-- NEW TOP BAR -->
     <section class="new-top-bar">
         <div class="container new-top-bar-inner">
-            <div class="new-top-item">
+            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <i class="fas fa-certificate new-top-icon"></i>
                 <div class="new-top-text">MTO-Approved &<br>Licensed</div>
             </div>
-            <div class="new-top-item">
+            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.2s;">
                 <i class="fas fa-star new-top-icon"></i>
                 <div class="new-top-text">900+ 5 Star Google<br>Reviews</div>
             </div>
-            <div class="new-top-item">
+            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.3s;">
                 <i class="fas fa-award new-top-icon"></i>
                 <div class="new-top-text">Canadian Choice Award<br>Winner 2025-2026</div>
             </div>
-            <div class="new-top-item">
+            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.4s;">
                 <i class="fas fa-steering-wheel new-top-icon"></i>
                 <div class="new-top-text">Top 3 Driving Schools by<br>Three Best Rated Website</div>
             </div>
-            <div class="new-top-item">
+            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.5s;">
                 <i class="fas fa-users new-top-icon"></i>
                 <div class="new-top-text">Former DriveTest<br>Examiners</div>
             </div>
@@ -903,11 +910,11 @@
     <!-- COURSE SELECTION -->
     <section class="section-padding">
         <div class="container text-center">
-            <h2 class="section-title">Choose the Right Course <span>for Your Driving Goal</span></h2>
-            <p class="section-subtitle">Whether you're starting from scratch, preparing for your G2 or G road test, or need instructor support on test day, choose the option that fits you best.</p>
+            <h2 class="section-title animate fade-in-up">Choose the Right Course <span>for Your Driving Goal</span></h2>
+            <p class="section-subtitle animate fade-in-up" style="transition-delay: 0.1s;">Whether you're starting from scratch, preparing for your G2 or G road test, or need instructor support on test day, choose the option that fits you best.</p>
 
             <div class="course-grid-new">
-                <div class="course-card-new">
+                <div class="course-card-new animate fade-in-left" style="transition-delay: 0.1s;">
                     <img src="/images (3).jfif" alt="Beginner Driver">
                     <h3>Beginner Driver Education (BDE)</h3>
                     <ul class="course-list">
@@ -919,7 +926,7 @@
                     </div>
                 </div>
 
-                <div class="course-card-new">
+                <div class="course-card-new animate fade-in-up" style="transition-delay: 0.2s;">
                     <img src="/image (8).png" alt="Private Lessons">
                     <h3>Private G2 / G Driving Lessons</h3>
                     <ul class="course-list">
@@ -931,7 +938,7 @@
                     </div>
                 </div>
 
-                <div class="course-card-new">
+                <div class="course-card-new animate fade-in-right" style="transition-delay: 0.3s;">
                     <img src="/roaddrive.jfif" alt="Road Test">
                     <h3>Road Test Preparation & Car Use</h3>
                     <ul class="course-list">
@@ -949,35 +956,35 @@
     <!-- WHY CHOOSE US -->
     <section class="section-padding" style="background: var(--bg-light);">
         <div class="container text-center">
-            <h2 class="section-title">Why <span>Students</span> and <span>New Drivers</span> Choose Us</h2>
+            <h2 class="section-title animate fade-in-up">Why <span>Students</span> and <span>New Drivers</span> Choose Us</h2>
             
             <div class="features-grid-new">
-                <div class="feature-box-new">
+                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.1s;">
                     <div class="feature-icon-new"><i class="fas fa-car-side"></i></div>
                     <h4>Former DriveTest Examiners</h4>
                     <p>Learn from the people who used to grade the test. Know exactly what examiners look for.</p>
                 </div>
-                <div class="feature-box-new">
+                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.2s;">
                     <div class="feature-icon-new"><i class="fas fa-headset"></i></div>
                     <h4>Patient, Supportive Instructors</h4>
                     <p>Nervous drivers welcome. Our instructors specialize in anxious and first-time drivers.</p>
                 </div>
-                <div class="feature-box-new">
+                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.3s;">
                     <div class="feature-icon-new"><i class="fas fa-stopwatch"></i></div>
                     <h4>High First-Attempt Pass Rate</h4>
                     <p>Students who complete our BDE course consistently pass their G2 on the first try.</p>
                 </div>
-                <div class="feature-box-new">
+                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.4s;">
                     <div class="feature-icon-new"><i class="fas fa-chalkboard-teacher"></i></div>
                     <h4>One-on-One In-Car Training</h4>
                     <p>No group sessions. Every lesson is personalized to your pace and skill level.</p>
                 </div>
-                <div class="feature-box-new">
+                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.5s;">
                     <div class="feature-icon-new"><i class="fas fa-tag"></i></div>
                     <h4>Free Pickup & Drop-off</h4>
                     <p>We collect you from home, school, or work across Scarborough and the GTA.</p>
                 </div>
-                <div class="feature-box-new">
+                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.6s;">
                     <div class="feature-icon-new"><i class="fas fa-laptop-code"></i></div>
                     <h4>9-Language Online BDE Course</h4>
                     <p>Learn in English, French, Arabic, Chinese, Spanish, Italian, Russian, Turkish, or German.</p>
@@ -990,11 +997,11 @@
     <section class="steps-section-wrapper">
         <div class="container">
             <div class="steps-header">
-                <h2>Your Road to Licensed in <span>4 Simple Steps</span></h2>
+                <h2 class="animate fade-in-up">Your Road to Licensed in <span>4 Simple Steps</span></h2>
             </div>
             
             <div class="steps-container-new">
-                <div class="step-item-new">
+                <div class="step-item-new animate zoom-in" style="transition-delay: 0.1s;">
                     <div class="step-circle-wrapper">
                         <i class="fas fa-key step-icon"></i>
                         <div class="step-number-badge">1</div>
@@ -1008,7 +1015,7 @@
                     </div>
                 </div>
 
-                <div class="step-item-new">
+                <div class="step-item-new animate zoom-in" style="transition-delay: 0.2s;">
                     <div class="step-circle-wrapper">
                         <i class="fas fa-laptop step-icon"></i>
                         <div class="step-number-badge">2</div>
@@ -1022,7 +1029,7 @@
                     </div>
                 </div>
 
-                <div class="step-item-new">
+                <div class="step-item-new animate zoom-in" style="transition-delay: 0.3s;">
                     <div class="step-circle-wrapper">
                         <i class="fas fa-users step-icon"></i>
                         <div class="step-number-badge">3</div>
@@ -1036,7 +1043,7 @@
                     </div>
                 </div>
 
-                <div class="step-item-new">
+                <div class="step-item-new animate zoom-in" style="transition-delay: 0.4s;">
                     <div class="step-circle-wrapper">
                         <i class="fas fa-trophy step-icon"></i>
                         <div class="step-number-badge">4</div>
@@ -1057,13 +1064,13 @@
     <section class="packages-section-red">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-title">Our Driving Packages</h2>
-                <p class="section-subtitle">Choose the perfect plan to get you on the road safely and confidently.</p>
+                <h2 class="section-title animate fade-in-up">Our Driving Packages</h2>
+                <p class="section-subtitle animate fade-in-up" style="transition-delay: 0.1s;">Choose the perfect plan to get you on the road safely and confidently.</p>
             </div>
             
             <div class="packages-grid-red">
                 <!-- Silver -->
-                <div class="package-card-red">
+                <div class="package-card-red animate fade-in-left" style="transition-delay: 0.1s;">
                     <div class="pkg-top-red">
                         <h3>Silver Package</h3>
                         <div class="pkg-price-red">$599</div>
@@ -1085,7 +1092,7 @@
                 </div>
 
                 <!-- Gold -->
-                <div class="package-card-red">
+                <div class="package-card-red animate fade-in-up" style="transition-delay: 0.2s;">
                     <div class="pkg-top-red">
                         <h3>Gold Package</h3>
                         <div class="pkg-price-red">$799.50</div>
@@ -1107,7 +1114,7 @@
                 </div>
 
                 <!-- Diamond -->
-                <div class="package-card-red">
+                <div class="package-card-red animate fade-in-right" style="transition-delay: 0.3s;">
                     <div class="pkg-top-red">
                         <h3>Diamond Package</h3>
                         <div class="pkg-price-red">$950</div>
@@ -1134,31 +1141,31 @@
     <!-- MINISTRY APPROVED BDE -->
     <section class="ministry-section">
         <div class="container">
-            <div class="ministry-header">
+            <div class="ministry-header animate fade-in-up">
                 <h2>Ministry Approved BDE Course Provider<br>Choose Best Ever Package Instantly.</h2>
                 <p>Transparent, affordable excellence—New Method Driving School's pricing instills trust with value and unbeatable quality in education.</p>
             </div>
             
             <div class="ministry-grid">
-                <div class="ministry-card">
+                <div class="ministry-card animate fade-in-up" style="transition-delay: 0.1s;">
                     <div class="ministry-icon"><i class="fas fa-crown"></i></div>
                     <h3>G2 Lessons</h3>
                     <p>Our G2 Private Packages are best for those who want something special and attentive for their needs.</p>
                     <a href="#" class="btn-ministry">PACKAGES</a>
                 </div>
-                <div class="ministry-card">
+                <div class="ministry-card animate fade-in-up" style="transition-delay: 0.2s;">
                     <div class="ministry-icon"><i class="fas fa-crown"></i></div>
                     <h3>G Lessons</h3>
                     <p>Our G Private Plan is for those who want better and individual attentive, One-and-One Lesson and training.</p>
                     <a href="#" class="btn-ministry">PACKAGES</a>
                 </div>
-                <div class="ministry-card">
+                <div class="ministry-card animate fade-in-up" style="transition-delay: 0.3s;">
                     <div class="ministry-icon"><i class="fas fa-crown"></i></div>
                     <h3>MTO Courses</h3>
                     <p>MTO Courses are certified and verified by Government of Transportation for their safe driving lessons only.</p>
                     <a href="#" class="btn-ministry">PACKAGES</a>
                 </div>
-                <div class="ministry-card">
+                <div class="ministry-card animate fade-in-up" style="transition-delay: 0.4s;">
                     <div class="ministry-icon"><i class="fas fa-crown"></i></div>
                     <h3>All Courses</h3>
                     <p>Checkout our all courses, and can also apply for them directly from here and our team will help you.</p>
@@ -1173,7 +1180,7 @@
         <div class="container">
             <div class="alt-package-list">
                 <!-- Silver Package -->
-                <div class="alt-package-card">
+                <div class="alt-package-card animate fade-in-left">
                     <div class="alt-pkg-header">
                         <div>
                             <h3>SILVER PACKAGE:</h3>
@@ -1193,7 +1200,7 @@
                 </div>
 
                 <!-- Gold Package -->
-                <div class="alt-package-card">
+                <div class="alt-package-card animate fade-in-right">
                     <div class="alt-pkg-header">
                         <div>
                             <h3>GOLD PACKAGE:</h3>
@@ -1214,7 +1221,7 @@
                 </div>
 
                 <!-- Platinum Package -->
-                <div class="alt-package-card">
+                <div class="alt-package-card animate fade-in-left">
                     <div class="alt-pkg-header">
                         <div>
                             <h3>PLATINUM PACKAGE:</h3>
@@ -1236,7 +1243,7 @@
                 </div>
 
                 <!-- VIP Package -->
-                <div class="alt-package-card">
+                <div class="alt-package-card animate fade-in-right">
                     <div class="alt-pkg-header">
                         <div>
                             <h3>VIP PACKAGE:</h3>
@@ -1263,7 +1270,7 @@
     <!-- GOOGLE REVIEWS -->
     <section class="google-reviews-section">
         <div class="container">
-            <div class="gr-header">
+            <div class="gr-header animate fade-in-up">
                 <div class="gr-title">
                     <h2>What our <span>Students</span> and New <span>Drivers</span> Say</h2>
                     <p style="color: var(--text-gray); font-size: 14px; margin-top: 10px;">Over 900+ five-star reviews on Google. Here are just a few of the stories from students who passed with us.</p>
@@ -1343,10 +1350,10 @@
             </div>
 
             <div class="text-center" style="margin-top: 30px;">
-                <button class="btn btn-red btn-small">View All Reviews</button>
+                <button class="btn btn-red btn-small animate fade-in-up">View All Reviews</button>
             </div>
 
-            <div class="gr-banner">
+            <div class="gr-banner animate fade-in-up" style="transition-delay: 0.2s;">
                 <i class="fas fa-star"></i>
                 <p>Read All <strong>900+ Reviews on Google</strong> leading to the Google Business Profile.</p>
             </div>
@@ -1356,45 +1363,45 @@
     <!-- FAQ -->
     <section class="faq-section">
         <div class="container faq-container">
-            <h2 class="section-title text-center" style="margin-bottom: 40px;">FAQ</h2>
+            <h2 class="section-title text-center animate fade-in-up" style="margin-bottom: 40px;">FAQ</h2>
             
-            <div class="faq-item active">
+            <div class="faq-item active animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">Is New Method Driving School approved by the MTO? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">Yes. New Method Driving School is fully MTO-approved and licensed. This means our Beginner Driver Education (BDE) course meets MTO standards and allows students to qualify for insurance discounts and earlier G2 road test eligibility.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">What is the BDE course? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">BDE stands for Beginner Driver Education. It is a comprehensive course that includes 10 hours of online learning and 20 hours of in-car training.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">How long do I need to wait for my G2 test? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">With a valid BDE certificate, you can take your G2 test after 8 months instead of 12 months.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">Where do I get my driver education certificate from? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">We provide the certificate upon successful completion of the course.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">How do I book my road test? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">You can book your road test online through the DriveTest website, or our instructors can guide you through the process.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">Is the BDE course self-paced? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">Yes, the online portion of the BDE course is self-paced, allowing you to complete it on your own schedule.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">How are in-car lessons scheduled? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">In-car lessons are scheduled directly with your instructor based on mutual availability.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">How many driving lessons are completed per week? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">This varies based on the student's availability and package, but typically students complete 1-2 lessons per week.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">Can I choose my preferred days for lessons? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">Absolutely. We strive to accommodate your schedule and will match you with an instructor who is available on your preferred days.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
                 <div class="faq-question">Is the pricing on your website up to date? <i class="fas fa-chevron-down"></i></div>
                 <div class="faq-answer">Yes, the pricing listed on our website is our current standard pricing.</div>
             </div>
@@ -1405,7 +1412,8 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-wrapper">
-                <div class="cta-text">
+                <!-- Text and Buttons -->
+                <div class="cta-text animate fade-in-left">
                     <div class="loc-header-text"><i class="fas fa-map-marker-alt"></i> SERVING OSHAWA & DURHAM REGION</div>
                     <h2>Ready to Start Your First Driving Lesson?</h2>
                     <p>Book your first lesson today and get expert guidance for your G2, G, or BDE journey.</p>
@@ -1429,7 +1437,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="cta-image">
+                <!-- Image (Now shows first on mobile due to flex-direction: column-reverse) -->
+                <div class="cta-image animate fade-in-right">
                     <img src="image 10.png" alt="Luxury Car">
                 </div>
             </div>
@@ -1439,11 +1448,11 @@
     <!-- Map Section -->
     <section class="map-section">
         <div class="container">
-            <div class="map-header">
+            <div class="map-header animate fade-in-up">
                 <h2>Driving Lessons Across <span>Durham Region</span></h2>
                 <p>We offer certified G2, G, and BDE lessons with free pickup and drop-off in the following areas. Tap your city for local lesson details.</p>
             </div>
-            <div class="map-wrapper">
+            <div class="map-wrapper animate zoom-in">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43053392.95168793!2d-135.7336815297594!3d48.80535736771116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0d03d337cc6ad9%3A0x9968b72aa2438fa5!2sCanada!5e0!3m2!1sen!2s!4v1793123877883!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 <div class="map-overlay">New Method Driving School</div>
             </div>
@@ -1454,7 +1463,7 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
+                <div class="footer-col animate fade-in-up" style="transition-delay: 0.1s;">
                     <div class="footer-logo-wrapper">
                         <img src="/logo.jpeg" alt="New Method Driving School" class="footer-logo-img">
                         <div class="footer-company-text">
@@ -1468,7 +1477,7 @@
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col animate fade-in-up" style="transition-delay: 0.2s;">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#">About Us</a></li>
@@ -1479,7 +1488,7 @@
                         <li><a href="#">Blogs</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col animate fade-in-up" style="transition-delay: 0.3s;">
                     <h4>Service Areas</h4>
                     <ul>
                         <li><a href="#">Ajax</a></li>
@@ -1491,7 +1500,7 @@
                         <li><a href="#" style="color: var(--brand-red);">Port Perry</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col animate fade-in-up" style="transition-delay: 0.4s;">
                     <h4>Contact Details</h4>
                     <div class="footer-contact-item">
                         <i class="fas fa-map-marker-alt"></i>
@@ -1535,7 +1544,34 @@
             });
         });
 
-        // Scroll animation observer
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            // Toggle icon between bars and close (x)
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Scroll Reveal Animations
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
                 root: null,
@@ -1546,16 +1582,15 @@
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in-up');
+                        entry.target.classList.add('animated');
                         observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            const elementsToAnimate = document.querySelectorAll('.course-card-new, .step-item-new, .package-card-red, .gr-card, .ministry-card, .alt-package-card, .feature-box-new');
+            const elementsToAnimate = document.querySelectorAll('.animate');
             elementsToAnimate.forEach(el => {
                 observer.observe(el);
-                el.style.opacity = "0"; 
             });
         });
     </script>
