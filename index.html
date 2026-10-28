@@ -601,42 +601,45 @@
 
         /* --- MOBILE & TABLETS (max 768px) --- */
         @media (max-width: 768px) {
-            /* Header Mobile Fixes */
+            /* Header Mobile Fixes: Row layout, centered */
             .header-inner {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            .logo-wrapper {
-                justify-content: center;
                 flex-direction: row;
+                justify-content: space-between;
                 gap: 10px;
-                width: 100%;
-            }
-            .logo-img { height: 45px; }
-            .company-text {
-                font-size: 18px;
                 text-align: left;
             }
+            .logo-wrapper {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 8px;
+                width: auto;
+            }
+            .logo-img { height: 35px; }
+            .company-text {
+                font-size: 14px;
+                line-height: 1.1;
+            }
             .nav-links { display: none; }
-            .header-contact-card { width: 100%; border-radius: 12px; padding: 10px; }
-            .header-phone { font-size: 20px; }
+            .header-contact-card { 
+                display: none; /* Hide on mobile to save space, as requested */
+            }
 
-            /* Hero Mobile Fixes */
+            /* Hero Mobile Fixes: Tighter padding */
             .hero {
                 background-attachment: scroll;
-                padding: 90px 0 100px;
+                padding: 60px 0 70px; /* Reduced padding */
             }
             .hero h1 { font-size: 32px; }
             .hero p { font-size: 16px; }
             .hero-buttons { flex-direction: column; width: 100%; gap: 12px; }
             .hero-buttons .btn { width: 100%; }
 
-            .new-top-bar { padding: 20px 0; }
-            .new-top-bar-inner { flex-direction: column; gap: 15px; }
-            .new-top-item { width: 100%; justify-content: flex-start; }
-            .new-top-icon { font-size: 30px; }
-            .new-top-text { font-size: 14px; }
+            /* Top Bar Mobile Fixes: Stacked cleanly */
+            .new-top-bar { padding: 15px 0; }
+            .new-top-bar-inner { flex-direction: column; gap: 12px; align-items: flex-start; padding: 0 15px; }
+            .new-top-item { width: 100%; justify-content: flex-start; gap: 12px; }
+            .new-top-icon { font-size: 24px; }
+            .new-top-text { font-size: 13px; }
 
             .section-padding { padding: 60px 0; }
             .section-title { font-size: 28px; }
@@ -686,8 +689,19 @@
             .map-wrapper { height: 300px; }
             .map-overlay { font-size: 12px; padding: 8px 14px; top: 12px; left: 12px; }
 
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-            .footer-col h4 { margin-bottom: 15px; }
+            /* Footer Mobile Grid: Side by Side Quick Links & Service Areas */
+            .footer-grid { 
+                grid-template-columns: 1fr 1fr; /* 2 columns */
+                gap: 25px; 
+            }
+            .footer-col:first-child {
+                grid-column: 1 / -1; /* Logo takes full width */
+            }
+            .footer-col:last-child {
+                grid-column: 1 / -1; /* Contact Details takes full width */
+            }
+            
+            .footer-col h4 { margin-bottom: 15px; font-size: 16px; }
             .footer-logo-img { height: 45px; }
             .footer-company-text { font-size: 18px; }
             .footer-bottom { font-size: 13px; }
@@ -777,6 +791,9 @@
             .footer-col ul li { font-size: 14px; }
             .footer-contact-item div p { font-size: 14px; }
             .footer-bottom { font-size: 12px; }
+            
+            /* Keep footer 2 columns on smaller screens */
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         /* --- iPHONE MINI (375px width) EXTRA TIGHTENING --- */
@@ -786,8 +803,8 @@
             .hero p { font-size: 13px; }
             .section-title { font-size: 22px; }
 
-            .new-top-text { font-size: 13px; }
-            .new-top-icon { font-size: 26px; }
+            .new-top-text { font-size: 12px; }
+            .new-top-icon { font-size: 22px; }
 
             .features-grid-new { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .feature-box-new { padding: 12px 8px; }
@@ -799,8 +816,8 @@
 
             .gr-card-header { flex-wrap: wrap; }
 
-            .footer-grid { gap: 25px; }
-            .footer-col h4 { font-size: 16px; }
+            .footer-grid { gap: 20px; }
+            .footer-col h4 { font-size: 15px; }
             .footer-contact-item i { width: 32px; height: 32px; font-size: 15px; }
 
             .cta-text h2 { font-size: 22px; }
