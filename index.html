@@ -1,1918 +1,882 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>New Method Driving School Scarborough</title>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            --brand-red: #CA3535;
-            --brand-red-hover: #a82b2b;
-            --brand-blue: #0253BB; 
-            --brand-blue-hover: #013e8f;
-            --primary-dark: #111827;
-            --text-gray: #4B5563;
-            --bg-light: #F9FAFB;
-            --white: #FFFFFF;
-            --border-radius: 16px;
-            --shadow: 0 10px 25px rgba(0,0,0,0.05);
-            --shadow-hover: 0 20px 40px rgba(0,0,0,0.12);
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Prevent horizontal scrolling on mobile */
-        html, body {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: #1F2937;
-            line-height: 1.6;
-            background-color: var(--white);
-            -webkit-text-size-adjust: 100%;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            color: var(--primary-dark);
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img { max-width: 100%; display: block; }
-
-        .container {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-size: 15px;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-
-        /* --- HERO BUTTON ANIMATIONS & COLORS --- */
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .hero-btn-primary, .hero-btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 16px 32px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 50px;
-            background-color: var(--brand-blue);
-            color: white;
-            border: 2px solid var(--brand-blue);
-            box-shadow: 0 8px 25px rgba(2, 83, 187, 0.3);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(2, 83, 187, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(2, 83, 187, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(2, 83, 187, 0); }
-        }
-
-        .hero-btn-primary:hover, .hero-btn-secondary:hover {
-            background-color: var(--brand-blue-hover);
-            border-color: var(--brand-blue-hover);
-            transform: translateY(-5px) scale(1.02);
-            animation: pulse-glow 1.5s infinite;
-        }
-
-        .hero-btn-primary i {
-            transition: transform 0.3s ease;
-        }
-        .hero-btn-primary:hover i {
-            transform: translateX(5px);
-        }
-
-        .btn-red { 
-            background-color: var(--brand-red); 
-            color: white; 
-            box-shadow: 0 4px 15px rgba(202, 53, 53, 0.3); 
-        }
-        .btn-red:hover { 
-            background-color: var(--brand-red-hover); 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 20px rgba(202, 53, 53, 0.4); 
-        }
-        
-        .btn-small { padding: 10px 20px; font-size: 14px; }
-
-        .section-padding { padding: 90px 0; }
-        .text-center { text-align: center; }
-
-        /* --- ANIMATIONS --- */
-        .animate {
-            opacity: 0;
-            transition: all 1s ease-out;
-        }
-
-        .fade-in-up { transform: translateY(40px); }
-        .fade-in-left { transform: translateX(-40px); }
-        .fade-in-right { transform: translateX(40px); }
-        .zoom-in { transform: scale(0.95); }
-
-        .animate.animated {
-            opacity: 1;
-            transform: translate(0) scale(1);
-        }
-
-        /* --- HEADER --- */
-        header {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            border-bottom: 1px solid #E5E7EB;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-        
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            position: relative;
-        }
-
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-img { height: 50px; width: auto; object-fit: contain; }
-        
-        .company-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 22px;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .company-text .line1 { color: var(--brand-red); }
-        .company-text .line2 { color: #111827; }
-
-        .nav-links { display: flex; gap: 25px; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .nav-links a { position: relative; transition: color 0.3s; }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--brand-red);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover { color: var(--brand-red); }
-
-        .header-contact-card {
-            background: var(--bg-light);
-            border: 1px solid #E5E7EB;
-            border-radius: 50px;
-            padding: 8px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-
-        .header-contact-card span {
-            color: var(--brand-red);
-            font-weight: 700;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .header-phone { 
-            font-weight: 800; 
-            font-size: 18px; 
-            color: var(--primary-dark); 
-            line-height: 1.2;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            font-size: 28px;
-            color: var(--primary-dark);
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 5px;
-            transition: color 0.3s;
-        }
-        .mobile-menu-btn:hover { color: var(--brand-red); }
-
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border-radius: 0 0 15px 15px;
-            padding: 20px 0;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            z-index: 99;
-            border-top: 1px solid #E5E7EB;
-        }
-        .mobile-menu.active { display: flex; }
-        .mobile-menu a { font-weight: 700; font-size: 16px; color: var(--primary-dark); text-transform: uppercase; width: 100%; text-align: center; padding: 10px 0; }
-        .mobile-menu a:hover { color: var(--brand-red); background: var(--bg-light); }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            background: 
-                linear-gradient(90deg, rgba(17, 24, 39, 0.85) 0%, rgba(17, 24, 39, 0.5) 40%, rgba(17, 24, 39, 0) 100%),
-                url('/slider.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            padding: 130px 0 140px;
-            color: white;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.6;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 950px;
-        }
-
-        .hero h1 {
-            font-size: 52px;
-            line-height: 1.2;
-            margin-bottom: 25px;
-            color: white;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
-            letter-spacing: -0.02em;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 35px;
-            color: #f1f5f9;
-            font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-            max-width: 800px;
-        }
-
-        /* --- NEW TOP BAR --- */
-        .new-top-bar {
-            background: white;
-            padding: 25px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            position: relative;
-            z-index: 20;
-        }
-        
-        .new-top-bar-inner {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .new-top-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-align: left;
-        }
-
-        .custom-icon-img {
-            width: 40px;
-            height: auto;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
-
-        .new-top-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 14px;
-            color: var(--primary-dark);
-            line-height: 1.3;
-        }
-
-        /* --- SECTION TITLES --- */
-        .section-title { font-size: 38px; margin-bottom: 15px; line-height: 1.2; }
-        .section-title span { color: var(--brand-red); }
-        .section-subtitle { margin-bottom: 50px; color: var(--text-gray); font-size: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
-
-        /* --- COURSE SELECTION --- */
-        .course-grid-new {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-            text-align: left;
-        }
-
-        .course-card-new {
-            background: white;
-            border: 2px solid #F3F4F6;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition);
-            overflow: hidden;
-        }
-        
-        .course-card-new:hover { transform: translateY(-10px); border-color: var(--brand-red); box-shadow: var(--shadow-hover); }
-        .course-card-new img { height: 200px; width: 100%; object-fit: cover; border-radius: 12px; margin-bottom: 25px; transition: transform 0.5s ease; }
-        .course-card-new:hover img { transform: scale(1.05); }
-        .course-card-new h3 { font-size: 22px; margin-bottom: 15px; }
-        
-        .course-list { font-size: 15px; color: #4B5563; margin-bottom: 30px; flex-grow: 1; }
-        .course-list li { margin-bottom: 12px; display: flex; gap: 12px; align-items: flex-start; }
-        .course-list i { color: var(--brand-red); margin-top: 4px; }
-
-        /* --- WHY CHOOSE US --- */
-        .features-grid-new {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .feature-box-new {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            border: 1px solid #E5E7EB;
-            text-align: center;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .feature-box-new:hover { border-color: var(--brand-red); box-shadow: var(--shadow-hover); transform: translateY(-5px); }
-        .feature-icon-new { color: var(--brand-red); font-size: 40px; margin-bottom: 20px; }
-        .feature-box-new h4 { font-size: 18px; margin-bottom: 12px; }
-        .feature-box-new p { font-size: 14px; color: var(--text-gray); }
-
-        /* --- STEPS SECTION --- */
-        .steps-section-wrapper { background-color: #F8FAFC; padding: 80px 0; }
-        .steps-header { text-align: center; margin-bottom: 60px; }
-        .steps-header h2 { font-size: 38px; color: #111827; font-weight: 800; }
-        .steps-header h2 span { color: var(--brand-red); }
-
-        .steps-container-new { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 20px; 
-            position: relative; 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            align-items: stretch; 
-        }
-        
-        .step-item-new { 
-            position: relative; 
-            z-index: 2; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            transition: transform 0.3s ease; 
-            height: 100%; 
-            margin-top: 20px; 
-        }
-        .step-item-new:hover { transform: translateY(-5px); }
-        
-        .step-circle-wrapper { 
-            width: 130px; 
-            height: 130px; 
-            background: white; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            margin-bottom: -25px; 
-            border: 3px solid #D1D5DB; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
-            position: relative; 
-            transition: all 0.3s ease; 
-            flex-shrink: 0; 
-            z-index: 10;
-        }
-        
-        .step-item-new:hover .step-circle-wrapper { 
-            border-color: var(--brand-blue); 
-            box-shadow: 0 0 0 6px rgba(2, 83, 187, 0.1), 0 10px 20px rgba(2, 83, 187, 0.2); 
-        }
-        
-        .step-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 50%;
-        }
-
-        .step-card-new { 
-            background: white; 
-            border-radius: 12px; 
-            padding: 50px 25px 25px 25px; 
-            text-align: center; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
-            width: 100%; 
-            display: flex; 
-            flex-direction: column; 
-            border: 1px solid #E5E7EB; 
-            transition: all 0.3s ease; 
-            flex-grow: 1;
-            height: 100%;
-        }
-        
-        .step-card-new h4 { font-size: 18px; color: #111827; margin-bottom: 15px; font-weight: 700; }
-        .step-card-new p { font-size: 14px; color: #4B5563; margin-bottom: 30px; flex-grow: 1; line-height: 1.5; }
-        
-        .step-bottom-new { 
-            display: flex; 
-            align-items: center; 
-            justify-content: flex-start; 
-            gap: 12px; 
-            font-size: 13px; 
-            font-weight: 600; 
-            color: #111827; 
-            border-top: 1px solid #E5E7EB; 
-            padding-top: 15px; 
-            text-align: left;
-            margin-top: auto;
-        }
-        
-        .step-bottom-img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
-
-        /* --- NEW BDE PACKAGES SECTION (REPLACED) --- */
-        .bde-package-section { background: #F8FAFC; padding: 80px 0; }
-        
-        .bde-header { text-align: center; margin-bottom: 50px; }
-        .bde-header h2 { font-size: 38px; color: #111827; font-weight: 800; margin-bottom: 15px; }
-        .bde-header h2 span { color: var(--brand-red); }
-        .bde-header p { font-size: 15px; color: #4B5563; max-width: 700px; margin: 0 auto; }
-
-        .bde-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .bde-card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border: 1px solid #E5E7EB;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            transition: var(--transition);
-        }
-        .bde-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-
-        .bde-card-header { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
-        .bde-icon { font-size: 40px; }
-        .bde-icon.silver { color: #9CA3AF; }
-        .bde-icon.gold { color: #F59E0B; }
-        .bde-icon.platinum { color: #3B82F6; }
-        
-        .bde-title-wrap { flex-grow: 1; }
-        .bde-title-wrap h3 { font-size: 24px; font-weight: 700; margin-bottom: 2px; }
-        .bde-title-wrap h3.silver-text { color: #6B7280; }
-        .bde-title-wrap h3.gold-text { color: #D97706; }
-        .bde-title-wrap h3.platinum-text { color: #1D4ED8; }
-        .bde-title-wrap p { font-size: 13px; color: #4B5563; font-weight: 600; }
-        
-        .bde-price { font-size: 32px; font-weight: 800; color: #111827; margin-bottom: 20px; }
-        .bde-price span { font-size: 14px; font-weight: 600; color: #6B7280; }
-        
-        .bde-desc { font-size: 14px; color: #4B5563; margin-bottom: 20px; line-height: 1.5; min-height: 60px; }
-        
-        .bde-list { list-style: none; margin-bottom: 30px; flex-grow: 1; }
-        .bde-list li { font-size: 14px; color: #374151; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
-        .bde-list li i { color: var(--brand-red); font-size: 16px; margin-top: 2px; }
-        
-        .bde-footer { border-top: 1px solid #E5E7EB; padding-top: 20px; margin-top: auto; }
-        .bde-footer-item { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; color: #111827; margin-bottom: 15px; }
-        .bde-footer-item i { color: var(--brand-red); font-size: 16px; }
-        
-        .bde-btn { display: block; width: 100%; background: var(--brand-red); color: white; text-align: center; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: 0.3s; }
-        .bde-btn:hover { background: var(--brand-red-hover); }
-
-        /* Popular Badge */
-        .bde-popular-badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: var(--brand-red);
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 5px 15px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            box-shadow: 0 4px 10px rgba(202, 53, 53, 0.3);
-        }
-
-        /* Call Banner */
-        .bde-call-banner { background: #FEF2F2; border: 1px solid #FECACA; border-radius: 12px; padding: 15px 25px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
-        .bde-call-icon { background: #991B1B; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-        .bde-call-banner p { font-size: 15px; color: #374151; margin: 0; font-weight: 600; }
-        .bde-call-banner p a { color: #991B1B; text-decoration: underline; }
-
-        /* Comparison Table */
-        .bde-table-wrapper { overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #E5E7EB; }
-        .bde-table { width: 100%; border-collapse: collapse; min-width: 600px; }
-        .bde-table th, .bde-table td { padding: 15px 20px; text-align: center; border-bottom: 1px solid #E5E7EB; font-size: 14px; }
-        .bde-table th { background: #991B1B; color: white; font-weight: 700; font-size: 14px; text-transform: uppercase; }
-        .bde-table th:first-child, .bde-table td:first-child { text-align: left; font-weight: 600; color: #111827; }
-        .bde-table td { color: #4B5563; }
-        .bde-table tr:last-child td { border-bottom: none; background: #FEF2F2; font-weight: 700; color: #111827; }
-        .bde-table i.fa-check-circle { color: #CA3535; font-size: 16px; margin-right: 5px; }
-        .bde-table i.fa-times-circle { color: #9CA3AF; font-size: 16px; margin-right: 5px; }
-        .bde-table .feature-title { display: flex; align-items: center; gap: 10px; }
-        .bde-table .feature-title i { color: #CA3535; font-size: 16px; }
-
-
-        /* --- MINISTRY APPROVED SECTION --- */
-        .ministry-section { background: white; padding: 80px 0; }
-        .ministry-header { text-align: center; margin-bottom: 50px; }
-        .ministry-header h2 { font-size: 38px; margin-bottom: 15px; line-height: 1.2; }
-        .ministry-header p { font-size: 16px; color: var(--text-gray); max-width: 800px; margin: 0 auto; }
-
-        .ministry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .ministry-card { background: #F9FAFB; border-radius: 12px; padding: 30px 20px; display: flex; flex-direction: column; border: 1px solid #E2E8F0; transition: var(--transition); }
-        .ministry-card:hover { border-color: var(--brand-red); }
-        .ministry-icon { width: 40px; height: 40px; background: var(--brand-red); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; margin-bottom: 20px; }
-        .ministry-card h3 { font-size: 22px; margin-bottom: 15px; }
-        .ministry-card p { font-size: 14px; color: var(--text-gray); line-height: 1.5; margin-bottom: 30px; flex-grow: 1; }
-        .ministry-card .btn-ministry { display: block; width: 100%; background: var(--brand-red); color: white; text-align: center; padding: 12px; border-radius: 6px; font-weight: 700; text-transform: uppercase; font-size: 13px; transition: 0.3s; border: none; cursor: pointer; }
-        .ministry-card .btn-ministry:hover { background: var(--brand-red-hover); }
-
-        /* --- ALTERNATE PACKAGES --- */
-        .alt-packages-section { background: #F9FAFB; padding: 80px 0; }
-        .alt-package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        
-        .alt-package-card { background: white; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid var(--brand-red); }
-        .alt-pkg-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
-        .alt-pkg-header h3 { font-size: 24px; color: var(--primary-dark); margin-bottom: 5px; }
-        .alt-pkg-price { font-size: 28px; font-weight: 800; color: var(--brand-red); }
-        .alt-pkg-price span { font-size: 14px; color: #666; font-weight: normal; }
-        .alt-pkg-badge { background: #FEF2F2; color: var(--brand-red); font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 4px; display: inline-block; margin-bottom: 15px; }
-        .alt-pkg-list { list-style: none; margin-bottom: 25px; flex-grow: 1; }
-        .alt-pkg-list li { position: relative; padding-left: 20px; margin-bottom: 10px; font-size: 15px; color: #374151; }
-        .alt-pkg-list li::before { content: '•'; color: var(--brand-red); font-size: 20px; position: absolute; left: 0; top: -2px; }
-        .alt-pkg-btn { display: block; width: 100%; background: #F3F4F6; color: var(--primary-dark); text-align: center; padding: 12px; border-radius: 6px; font-weight: 700; font-size: 15px; transition: 0.3s; border: none; cursor: pointer; }
-        .alt-pkg-btn:hover { background: var(--brand-red); color: white; }
-
-        /* --- GOOGLE REVIEWS --- */
-        .google-reviews-section { background: var(--bg-light); padding: 80px 0; overflow: hidden; }
-        .gr-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
-        .gr-title h2 { font-size: 32px; }
-        .gr-title h2 span { color: var(--brand-red); }
-        .gr-score { display: flex; flex-direction: column; align-items: flex-start; }
-        .gr-score-text { font-weight: 800; font-size: 18px; letter-spacing: 1px; margin-bottom: 5px; }
-        .gr-stars { color: #F59E0B; font-size: 18px; margin-bottom: 5px; }
-        .gr-google-logo { font-size: 24px; color: #4285F4; margin-top: 5px; }
-        
-        .gr-slider-container {
-            position: relative;
-            margin: 0 auto;
-            width: 100%;
-            overflow: hidden;
-            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-        }
-
-        .gr-cards-wrapper { 
-            display: flex; 
-            gap: 20px; 
-            width: max-content;
-            animation: scrollLeft 30s linear infinite;
-        }
-
-        .gr-slider-container:hover .gr-cards-wrapper { animation-play-state: paused; }
-
-        @keyframes scrollLeft {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 10px)); }
-        }
-
-        .gr-card { 
-            background: white; 
-            border-radius: 12px; 
-            padding: 25px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            border: 1px solid #E5E7EB; 
-            position: relative; 
-            width: 380px;
-            flex-shrink: 0;
-        }
-
-        .gr-card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .gr-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #E5E7EB; background-color: #e5e7eb; }
-        .gr-user-info h4 { font-size: 15px; margin-bottom: 2px; }
-        .gr-user-info p { font-size: 12px; color: #9CA3AF; }
-        .gr-card-stars { color: #F59E0B; font-size: 12px; margin-bottom: 12px; }
-        .gr-card-text { font-size: 14px; color: #4B5563; line-height: 1.5; }
-        
-        .gr-card-logo { position: absolute; top: 25px; right: 25px; font-size: 20px; color: #4285F4; }
-        
-        .gr-banner { background: #FEF2F2; border: 1px solid #FECACA; border-radius: 12px; padding: 20px; text-align: center; margin-top: 30px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .gr-banner i { color: var(--brand-red); font-size: 24px; }
-
-        /* --- FAQ --- */
-        .faq-section { background: white; padding: 90px 0; }
-        .faq-container { max-width: 900px; margin: 0 auto; }
-        .faq-item { border-bottom: 1px solid #E5E7EB; padding: 20px 0; }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 16px; color: #1F2937; transition: color 0.3s; gap: 10px; }
-        .faq-question:hover { color: var(--brand-red); }
-        .faq-question i { color: var(--brand-red); transition: transform 0.3s; flex-shrink: 0; }
-        .faq-answer { display: none; padding-top: 15px; color: var(--text-gray); font-size: 15px; line-height: 1.6; }
-        .faq-item.active .faq-answer { display: block; }
-        .faq-item.active .faq-question i { transform: rotate(180deg); }
-
-        /* --- CTA & MAP --- */
-        .cta-section { padding: 80px 0; background: #F8FAFC; }
-        .cta-wrapper { display: flex; gap: 60px; align-items: center; flex-wrap: wrap; }
-        .cta-text { flex: 1; min-width: 280px; }
-        .cta-text h2 { font-size: 42px; line-height: 1.1; margin-bottom: 20px; }
-        .cta-text p { font-size: 16px; color: var(--text-gray); margin-bottom: 30px; }
-        .cta-contact-list { margin-top: 30px; }
-        .cta-contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .cta-contact-icon { width: 50px; height: 50px; background: var(--brand-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; flex-shrink: 0; }
-        .cta-contact-info h4 { font-size: 14px; color: var(--text-gray); font-weight: 600; text-transform: uppercase; margin-bottom: 2px; }
-        .cta-contact-info p { font-size: 18px; font-weight: 800; color: var(--primary-dark); margin: 0; }
-        .cta-image { flex: 1; min-width: 280px; }
-        .cta-image img { border-radius: 20px; box-shadow: var(--shadow-hover); width: 100%; }
-
-        /* Map Section */
-        .map-section { padding: 0 0 90px 0; background: white; }
-        .map-header { text-align: center; margin-bottom: 40px; }
-        .map-header h2 { font-size: 36px; margin-bottom: 10px; }
-        .map-header h2 span { color: var(--brand-red); }
-        .map-header p { font-size: 15px; color: var(--text-gray); }
-        .map-wrapper { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); height: 450px; background: #E5E7EB; position: relative; width: 100%; }
-        .map-wrapper iframe { width: 100%; height: 100%; border: 0; display: block; }
-        .map-overlay { position: absolute; top: 20px; left: 20px; background: white; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 10; pointer-events: none; }
-
-        /* --- FOOTER --- */
-        footer { background: var(--primary-dark); color: #94A3B8; padding: 80px 0 30px; }
-        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 60px; }
-        
-        .footer-logo-wrapper { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .footer-logo-img { height: 50px; width: auto; object-fit: contain; background: white; padding: 5px; border-radius: 8px; }
-        
-        .footer-company-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 20px;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-            display: flex;
-            flex-direction: column;
-        }
-        .footer-company-text .line1 { color: var(--brand-red); }
-        .footer-company-text .line2 { color: white; }
-        
-        .footer-col p { font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
-        .social-links { display: flex; gap: 10px; }
-        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
-        .social-links a:hover { background: var(--brand-red); }
-        .footer-col h4 { color: white; font-size: 18px; margin-bottom: 25px; }
-        .footer-col ul li { margin-bottom: 15px; font-size: 15px; }
-        .footer-col ul li a { transition: 0.3s; }
-        .footer-col ul li a:hover { color: var(--brand-red); padding-left: 5px; }
-        .footer-contact-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: flex-start; }
-        .footer-contact-item i { color: white; font-size: 18px; margin-top: 3px; background: rgba(255,255,255,0.1); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .footer-contact-item div p { margin: 0; font-size: 15px; color: #CBD5E1; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; text-align: center; font-size: 14px; }
-
-        /* ============================================
-           RESPONSIVE — MOBILE FIXES
-           ============================================ */
-
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 40px; }
-            .steps-container-new { grid-template-columns: repeat(2, 1fr); gap: 30px; row-gap: 50px; }
-            .bde-cards-grid { grid-template-columns: repeat(2, 1fr); }
-            .gr-card { width: 320px; }
-            .packages-grid-red, .ministry-grid { grid-template-columns: 1fr 1fr; }
-            .alt-package-list { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
-            .new-top-bar-inner { justify-content: center; gap: 25px; }
-        }
-
-        @media (max-width: 768px) {
-            .header-inner {
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 10px;
-                text-align: left;
-                padding-bottom: 5px;
-            }
-            .logo-wrapper {
-                flex-direction: row;
-                justify-content: flex-start;
-                gap: 8px;
-                width: auto;
-            }
-            .logo-img { height: 35px; }
-            .company-text { font-size: 14px; }
-            
-            .nav-links { display: none; }
-            .header-contact-card { display: none; }
-            .mobile-menu-btn { display: block; margin-left: auto; }
-
-            .hero {
-                background-attachment: scroll;
-                padding: 60px 0 70px;
-                background: 
-                    linear-gradient(180deg, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.6) 100%),
-                    url('/slider.png');
-                background-size: cover;
-                background-position: center;
-            }
-            .hero h1 { font-size: 32px; }
-            .hero p { font-size: 16px; }
-            
-            .hero-btn-primary, .hero-btn-secondary {
-                width: 100%;
-                justify-content: center;
-            }
-
-            /* --- NEW TOP BAR MOBILE GRID (2x2) --- */
-            .new-top-bar { 
-                padding: 20px 0; 
-                background: #fff;
-            }
-            .new-top-bar-inner {
-                display: grid;
-                grid-template-columns: 1fr 1fr; 
-                gap: 20px 10px;
-                padding: 0 15px;
-                justify-content: center;
-                align-items: center;
-            }
-            .new-top-item {
-                flex-direction: column;
-                text-align: center;
-                justify-content: center;
-                gap: 10px;
-                width: 100%;
-            }
-            .new-top-item:nth-child(5) {
-                display: none; 
-            }
-            .custom-icon-img { 
-                width: 35px; 
-                height: 35px;
-            }
-            .new-top-text { 
-                font-size: 13px; 
-                text-align: center;
-            }
-
-            .section-padding { padding: 60px 0; }
-            .section-title { font-size: 28px; }
-            .section-subtitle { font-size: 15px; margin-bottom: 30px; }
-
-            /* Steps Mobile */
-            .steps-section-wrapper { padding: 60px 0; }
-            .steps-header h2 { font-size: 28px; }
-            .steps-container-new { 
-                grid-template-columns: 1fr; 
-                gap: 40px; 
-                max-width: 400px; 
-            }
-            .step-circle-wrapper { 
-                width: 110px; 
-                height: 110px; 
-            }
-            .step-card-new { 
-                padding: 50px 20px 20px 20px; 
-            }
-
-            /* BDE Mobile */
-            .bde-cards-grid { grid-template-columns: 1fr; }
-            .bde-header h2 { font-size: 28px; }
-            .bde-price { font-size: 28px; }
-            .bde-table-wrapper { margin: 0 -15px; border-radius: 0; border-left: none; border-right: none; }
-
-            .features-grid-new { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .feature-box-new { padding: 20px 15px; }
-            .feature-icon-new { font-size: 32px; margin-bottom: 10px; }
-            .feature-box-new h4 { font-size: 16px; margin-bottom: 8px; }
-            .feature-box-new p { font-size: 13px; }
-
-            .gr-cards-wrapper { animation-duration: 25s; }
-            .gr-card { width: 280px; padding: 18px; }
-
-            .packages-grid-red, .ministry-grid { grid-template-columns: 1fr; }
-            .pkg-price-red { font-size: 42px; }
-            .ministry-grid { gap: 20px; }
-
-            .alt-package-list { grid-template-columns: 1fr; }
-            .alt-package-card { padding: 20px; }
-            .alt-pkg-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .alt-pkg-price { font-size: 24px; }
-
-            .gr-header { flex-direction: column; align-items: flex-start; }
-            .gr-title h2 { font-size: 26px; }
-
-            .faq-question { font-size: 15px; }
-            .faq-answer { font-size: 14px; }
-
-            .cta-wrapper { flex-direction: column-reverse; gap: 30px; }
-            .cta-text h2 { font-size: 30px; }
-            .cta-contact-info p { font-size: 16px; }
-            .cta-image img { border-radius: 16px; }
-            .cta-text .btn { width: 100%; }
-
-            .map-wrapper { height: 300px; }
-            .map-overlay { font-size: 12px; padding: 8px 14px; top: 12px; left: 12px; }
-
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 25px; }
-            .footer-col:first-child { grid-column: 1 / -1; }
-            .footer-col:last-child { grid-column: 1 / -1; }
-            .footer-col h4 { margin-bottom: 15px; font-size: 16px; }
-            .footer-logo-img { height: 45px; }
-            .footer-company-text { font-size: 18px; }
-            .footer-bottom { font-size: 13px; }
-        }
-
-        @media (max-width: 480px) {
-            .container { padding: 0 15px; }
-            .hero h1 { font-size: 26px; line-height: 1.25; }
-            .hero p { font-size: 14px; margin-bottom: 25px; }
-            .hero-btn-primary, .hero-btn-secondary { padding: 14px 20px; font-size: 15px; }
-            .section-title { font-size: 24px; }
-            .section-subtitle { font-size: 14px; }
-
-            .course-grid-new { grid-template-columns: 1fr; gap: 20px; }
-            .course-card-new { padding: 18px; }
-            .course-card-new img { height: 170px; }
-            .course-card-new h3 { font-size: 18px; }
-            .course-list { font-size: 14px; }
-            .course-list li { gap: 10px; }
-            .course-btn-wrapper .btn { width: 100%; font-size: 13px; padding: 10px 18px; }
-
-            .features-grid-new { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .feature-box-new { padding: 15px 10px; border-radius: 12px; }
-            .feature-box-new h4 { font-size: 14px; }
-            .feature-box-new p { font-size: 12px; }
-            .feature-icon-new { font-size: 28px; }
-
-            .steps-header h2 { font-size: 24px; }
-            .step-circle-wrapper { width: 90px; height: 90px; margin-bottom: -20px; }
-            .step-card-new { padding: 40px 15px 15px; }
-            .step-card-new h4 { font-size: 16px; }
-            .step-card-new p { font-size: 13px; }
-            .step-bottom-new { font-size: 12px; gap: 8px; }
-            .step-bottom-img { width: 20px; height: 20px; }
-
-            .bde-card { padding: 20px; }
-            .bde-title-wrap h3 { font-size: 20px; }
-            .bde-price { font-size: 26px; }
-            .bde-table th, .bde-table td { padding: 12px 10px; font-size: 12px; }
-            .bde-table th { font-size: 11px; }
-
-            .pkg-top-red { padding: 20px 18px; }
-            .pkg-top-red h3 { font-size: 18px; }
-            .pkg-price-red { font-size: 36px; }
-            .pkg-features-red { padding: 20px 18px; }
-            .pkg-features-red ul li { font-size: 14px; }
-            .pkg-btn-red { font-size: 13px; padding: 10px; }
-
-            .ministry-header h2 { font-size: 24px; }
-            .ministry-card { padding: 20px 15px; }
-            .ministry-card h3 { font-size: 18px; }
-            .ministry-card p { font-size: 13px; }
-            .ministry-card .btn-ministry { font-size: 12px; padding: 10px; }
-
-            .alt-package-card { padding: 16px; }
-            .alt-pkg-header h3 { font-size: 20px; }
-            .alt-pkg-price { font-size: 22px; }
-            .alt-pkg-list li { font-size: 14px; }
-            .alt-pkg-btn { font-size: 14px; padding: 10px; }
-
-            .gr-title h2 { font-size: 22px; }
-            .gr-score-text { font-size: 16px; }
-            .gr-card { width: 260px; padding: 15px; }
-            .gr-card-header { gap: 10px; }
-            .gr-avatar { width: 38px; height: 38px; }
-            .gr-user-info h4 { font-size: 14px; }
-            .gr-user-info p { font-size: 11px; }
-            .gr-card-text { font-size: 13px; }
-            .gr-banner { padding: 15px; font-size: 13px; }
-            .gr-banner i { font-size: 20px; }
-
-            .faq-question { font-size: 14px; }
-            .faq-question i { font-size: 14px; }
-            .faq-answer { font-size: 13px; }
-
-            .cta-text h2 { font-size: 26px; }
-            .cta-text p { font-size: 14px; }
-            .cta-contact-item { gap: 12px; }
-            .cta-contact-icon { width: 42px; height: 42px; font-size: 16px; }
-            .cta-contact-info h4 { font-size: 12px; }
-            .cta-contact-info p { font-size: 15px; }
-
-            .map-header h2 { font-size: 24px; }
-            .map-wrapper { height: 250px; }
-            .map-overlay { font-size: 11px; padding: 6px 10px; }
-
-            .footer-logo-img { height: 40px; }
-            .footer-company-text { font-size: 16px; }
-            .footer-col p { font-size: 13px; }
-            .footer-col ul li { font-size: 14px; }
-            .footer-contact-item div p { font-size: 14px; }
-            .footer-bottom { font-size: 12px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-        }
-
-        @media (max-width: 375px) {
-            .container { padding: 0 12px; }
-            .hero h1 { font-size: 23px; }
-            .hero p { font-size: 13px; }
-            .section-title { font-size: 22px; }
-
-            .new-top-bar-inner { gap: 15px 5px; }
-            .custom-icon-img { width: 30px; height: 30px; }
-            .new-top-text { font-size: 11px; }
-
-            .features-grid-new { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .feature-box-new { padding: 12px 8px; }
-            .feature-box-new h4 { font-size: 13px; }
-            .feature-box-new p { font-size: 11px; }
-
-            .pkg-price-red { font-size: 32px; }
-            .pkg-top-red h3 { font-size: 17px; }
-
-            .gr-card-header { flex-wrap: wrap; }
-
-            .footer-grid { gap: 20px; }
-            .footer-col h4 { font-size: 15px; }
-            .footer-contact-item i { width: 32px; height: 32px; font-size: 15px; }
-
-            .cta-text h2 { font-size: 22px; }
-            .cta-contact-info p { font-size: 14px; }
-        }
-
-        @media (max-width: 768px) {
-            .header-contact-card, .hero-content, .new-top-text, .step-card-new, .course-card-new, .pkg-top-red, .alt-package-card, .footer-col {
-                word-break: break-word;
-            }
-            .pkg-price-red { word-break: normal; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Method Driving School Scarborough</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CA3535;--red-d:#a82b2b;--blue:#0253BB;--blue-d:#013e8f;
+  --dark:#111827;--gray:#4B5563;--soft:#F4F7FC;--white:#FFFFFF;--line:#E5E7EB;
+  --sh:0 8px 30px rgba(17,24,39,.06);--shh:0 18px 40px rgba(17,24,39,.12)
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden;width:100%}
+body{font-family:'Inter',sans-serif;color:#1F2937;line-height:1.6;background:var(--soft);-webkit-text-size-adjust:100%}
+h1,h2,h3,h4,h5{font-family:'Poppins',sans-serif;font-weight:700;color:var(--dark);line-height:1.2}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+
+/* Global Sections */
+.sec{padding:70px 0}
+.bg-white{background:var(--white)}
+.tc{text-align:center}
+.ttl{font-size:clamp(26px,4vw,38px);margin-bottom:14px}
+.ttl span{color:var(--red)}
+.sub{color:var(--gray);max-width:700px;margin:0 auto 40px;font-size:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 26px;border-radius:50px;font:600 15px 'Poppins',sans-serif;border:0;cursor:pointer;transition:.3s;background:var(--red);color:#fff;box-shadow:0 4px 15px rgba(202,53,53,.3)}
+.btn:hover{background:var(--red-d);transform:translateY(-3px)}
+.btn-blue{background:var(--blue);box-shadow:0 8px 25px rgba(2,83,187,.3);padding:16px 32px;font-size:16px}
+.btn-blue:hover{background:var(--blue-d)}
+.btn-sm{padding:10px 20px;font-size:14px}
+.card{background:var(--soft);border:1px solid var(--line);border-radius:20px;transition:.35s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shh);border-color:var(--red)}
+.an{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.an.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.an{opacity:1;transform:none;transition:none}}
+
+/* Header */
+header{background:rgba(255,255,255,.98);backdrop-filter:blur(10px);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);box-shadow:0 4px 12px rgba(0,0,0,.04)}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:15px;padding-top:12px;padding-bottom:12px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{height:50px;width:auto}
+.lt{font:800 20px/1.1 'Poppins',sans-serif;text-transform:uppercase;display:flex;flex-direction:column}
+.lt .a{color:var(--red)}.lt .b{color:var(--dark)}
+.nav{display:flex;gap:26px;font:600 14px 'Poppins',sans-serif}
+.nav a:hover{color:var(--red)}
+.hc{background:var(--soft);border:1px solid var(--line);border-radius:50px;padding:7px 20px;text-align:center}
+.hc span{display:block;color:var(--red);font-weight:700;font-size:10px;text-transform:uppercase}
+.hc b{font:800 18px 'Poppins',sans-serif;color:var(--dark)}
+.mb{display:none;font-size:26px;background:none;border:0;cursor:pointer;color:var(--dark)}
+.mm{display:none;flex-direction:column;background:#fff;border-top:1px solid var(--line);padding:10px 0}
+.mm.on{display:flex}
+.mm a{padding:12px;text-align:center;font:600 15px 'Poppins',sans-serif}
+.mm a:hover{background:var(--soft);color:var(--red)}
+
+/* ============================================
+   HERO — Text at TOP of image, Trust Bar overlaps bottom
+   ============================================ */
+.hero-wrap{position:relative}
+
+.hero{
+  background:linear-gradient(180deg,rgba(17,24,39,.82) 0%,rgba(17,24,39,.55) 45%,rgba(17,24,39,.35) 70%,rgba(17,24,39,.20) 100%),url('/slider.png') center/cover no-repeat;
+  color:#fff;
+  padding:100px 0 140px;
+  display:flex;
+  align-items:flex-start;
+  min-height:580px;
+}
+.hero .wrap{width:100%}
+.hero h1{font-size:clamp(28px,5vw,52px);color:#fff;margin-bottom:22px;max-width:900px;text-shadow:0 4px 20px rgba(0,0,0,.6);line-height:1.15}
+.hero p{font-size:clamp(15px,2vw,18px);color:#f1f5f9;max-width:780px;margin-bottom:32px;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.hb{display:flex;gap:16px;flex-wrap:wrap}
+
+/* ============================================
+   TRUST BAR — Desktop = 5 columns, Mobile = 4 items (2x2)
+   ============================================ */
+.top-overlap{
+  position:relative;
+  margin-top:-95px;
+  z-index:10;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 12px 30px rgba(0,0,0,.11);
+  padding:12px 14px;
+  max-width:1240px;
+  margin-left:auto;
+  margin-right:auto;
+  width:calc(100% - 48px);
+}
+
+.top-overlap .wrap{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:6px;
+  align-items:center;
+  padding:0;
+  max-width:100%;
+}
+
+.ti{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:4px;
+  font:700 10px/1.2 'Poppins',sans-serif;
+  color:var(--dark);
+}
+.ti img{width:24px;height:24px;object-fit:contain;flex-shrink:0}
+.ti div{font-size:10px;line-height:1.25}
+
+/* Grids */
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;text-align:left}
+.cc{padding:24px;display:flex;flex-direction:column;background:#fff;box-shadow:var(--sh)}
+.cc img{height:200px;width:100%;object-fit:cover;border-radius:14px;margin-bottom:22px}
+.cc h3{font-size:21px;margin-bottom:14px}
+.cl{font-size:15px;color:var(--gray);margin-bottom:26px;flex-grow:1}
+.cl li,.ck li{display:flex;gap:10px;align-items:flex-start;margin-bottom:11px}
+.cl i,.ck i{color:var(--red);margin-top:4px}
+
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.fb{padding:34px 24px;text-align:center;background:#fff;box-shadow:var(--sh)}
+.fb i{color:var(--red);font-size:38px;margin-bottom:16px}
+.fb h4{font-size:17px;margin-bottom:10px}
+.fb p{font-size:14px;color:var(--gray)}
+
+/* Steps */
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1100px;margin:50px auto 0}
+.st{display:flex;flex-direction:column;align-items:center}
+.sc{width:120px;height:120px;border-radius:50%;background:#fff;border:3px solid #D1D5DB;margin-bottom:-24px;z-index:2;box-shadow:var(--sh);transition:.3s}
+.sc img{width:100%;height:100%;object-fit:contain;border-radius:50%}
+.st:hover .sc{border-color:var(--blue)}
+.sb{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:42px 20px 22px;text-align:center;width:100%;flex-grow:1}
+.sb h4{font-size:17px;margin-bottom:10px}.sb p{font-size:14px;color:var(--gray)}
+
+/* BDE Packages */
+.bg{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-bottom:30px;text-align:left}
+.bc{padding:28px;display:flex;flex-direction:column;position:relative;background:#fff;box-shadow:var(--sh)}
+.bh{display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.bh>i{font-size:38px}
+.silver{color:#9CA3AF}.gold{color:#F59E0B}.plat{color:#3B82F6}
+.bh h3{font-size:24px}.bh p{font-size:13px;color:var(--gray);font-weight:600}
+.pr{font:800 32px 'Poppins',sans-serif;color:var(--dark);margin-bottom:12px}
+.pr span{font:600 14px 'Inter',sans-serif;color:#6B7280}
+.bd{font-size:14px;color:var(--gray);margin-bottom:18px;min-height:42px}
+.ck{margin-bottom:24px;flex-grow:1;font-size:14px;color:#374151}
+.bf{border-top:1px solid var(--line);padding-top:18px}
+.bfi{font-size:12px;font-weight:600;margin-bottom:14px;display:flex;gap:8px;align-items:center}
+.bfi i{color:var(--red)}
+.bb{display:block;width:100%;background:var(--red);color:#fff;text-align:center;padding:13px;border-radius:10px;font:600 15px 'Poppins',sans-serif;border:0;cursor:pointer;transition:.3s}
+.bb:hover{background:var(--red-d)}
+.pop{position:absolute;top:-12px;right:20px;background:var(--red);color:#fff;font:600 11px 'Poppins',sans-serif;padding:5px 14px;border-radius:20px;text-transform:uppercase}
+.call{background:#FEF2F2;border:1px solid #FECACA;border-radius:14px;padding:14px 22px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:30px;font-weight:600;font-size:15px}
+.call i{background:#991B1B;color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.call a{color:#991B1B;text-decoration:underline}
+
+/* ============================================
+   Comparison Table — Desktop & Mobile optimized
+   ============================================ */
+.tw{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:var(--sh);
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tbl{width:100%;border-collapse:collapse;table-layout:fixed;min-width:700px}
+.tbl th,.tbl td{padding:15px 12px;text-align:center;border-bottom:1px solid var(--line);font-size:14px;word-wrap:break-word}
+.tbl th{background:linear-gradient(135deg,#991B1B,var(--red));color:#fff;font:700 14px 'Poppins',sans-serif;letter-spacing:.35px;text-transform:uppercase;padding:18px 12px}
+.tbl th:first-child{color:#fff;font-weight:800;text-align:left;width:25%;font-family:'Poppins',sans-serif}
+.tbl td:first-child{text-align:left;font-weight:600;color:var(--dark);width:25%}
+.tbl td{color:var(--gray)}
+.tbl tr:last-child td{border:0;background:#FEF2F2;font-weight:700;color:var(--dark)}
+.tbl td i{color:var(--red);margin-right:5px}.tbl .no i{color:#9CA3AF}
+.tbl td:first-child i{margin-right:8px}
+
+/* Private Lessons */
+.pl-wrap { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 1040px; margin: 30px auto 0; align-items: stretch; }
+.pl-col { min-width: 0; background: #FDECEA; border-radius: 16px; padding: 20px; border: 1px solid #FAD2D0; }
+.pl-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.pl-head i { width: 44px; height: 44px; background: var(--red); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink:0; }
+.pl-head h3 { font-size: 20px; margin: 0; color: var(--red); }
+.pl-head p { font-size: 12px; color: #6B7280; margin: 0; line-height: 1.4; overflow-wrap: anywhere; }
+
+.pl-item { min-width: 0; background: #fff; border-radius: 12px; padding: 14px; margin-bottom: 14px; border: 1px solid #E5E7EB; box-shadow: 0 2px 8px rgba(0,0,0,.02); }
+.pl-item-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #F3F4F6; padding-bottom: 10px; margin-bottom: 10px; }
+.pl-item-top h4 { min-width: 0; font-size: 14px; margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+.pl-item-top .price { flex-shrink: 0; font-size: 18px; font-weight: 800; color: var(--red); white-space: nowrap; }
+.pl-feats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); justify-content: space-between; margin-bottom: 14px; gap: 8px; }
+.pl-feats div { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; font-size: 11px; color: #4B5563; line-height: 1.25; overflow-wrap: anywhere; }
+.pl-feats i { color: var(--red); font-size: 14px; margin-bottom: 2px; }
+.pl-btn { display: block; width: 100%; background: #991B1B; color: #fff; text-align: center; padding: 10px; border-radius: 6px; font: 600 14px 'Poppins', sans-serif; transition: .3s; }
+.pl-btn:hover { background: #7f1d1d; }
+
+/* Instructor Vehicle Box */
+.pl-custom { background: #FEF2F2; border: 1px solid #FECACA; border-radius: 12px; padding: 16px; text-align: center; margin-top: 24px; font-weight: 600; color: #991B1B; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; line-height: 1.5; overflow-wrap: anywhere; }
+.pl-custom a { text-decoration: underline; }
+
+/* Reviews */
+.rv{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:center}
+.rs{text-align:center;background:#fff;padding:40px 20px;border-radius:20px;box-shadow:var(--sh);border:1px solid var(--line)}
+.rs b.ex{font:700 26px 'Poppins',sans-serif;display:block;color:#000;letter-spacing:.5px;margin-bottom:10px}
+.stars{color:#FBBC05;letter-spacing:2px}
+.rs .stars{font-size:28px;margin:10px 0}
+.rs p{font-size:15px;color:var(--gray);margin-bottom:15px;}
+.gl{font:600 34px 'Poppins',sans-serif;letter-spacing:-1px;}
+.gl span:nth-child(1),.gl span:nth-child(4){color:#4285F4}.gl span:nth-child(2),.gl span:nth-child(6){color:#EA4335}.gl span:nth-child(3){color:#FBBC05}.gl span:nth-child(5){color:#34A853}
+
+.rw{position:relative;min-width:0;overflow:hidden;-webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent)}
+.rt{display:flex;gap:20px;width:max-content;animation:scrollLeft 35s linear infinite;padding:10px 0}
+.rw:hover .rt{animation-play-state:paused}
+@keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(calc(-50% - 10px))}}
+.rc{flex:0 0 310px;width:310px;background:#fff;border-radius:16px;padding:22px;min-width:0;white-space:normal;overflow-wrap:anywhere;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid var(--line)}
+.rh{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.av{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font:700 20px 'Poppins',sans-serif;flex-shrink:0;text-transform:uppercase;line-height:1;}
+.rh > div:not(.av){flex:1;min-width:0}
+.rh .av{flex:0 0 48px;width:48px;height:48px;aspect-ratio:1;border-radius:50%;overflow:hidden;}
+.rh h4{font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#111827}
+.rh small{color:#6B7280;font-size:13px}
+.g{font-size:22px;background:conic-gradient(from -45deg,#EA4335 0 90deg,#4285F4 90deg 180deg,#34A853 180deg 270deg,#FBBC05 270deg);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.rc .stars{font-size:15px;margin-bottom:12px}
+.rc .stars .fa-circle-check{color:#1A73E8;margin-left:6px;letter-spacing:0}
+.rx{font-size:15px;color:#374151;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;line-height:1.6;}
+.rx.open{display:block;-webkit-line-clamp:unset;overflow:visible;}
+.rm{background:none;border:0;color:#6B7280;font:500 14px 'Inter',sans-serif;margin-top:12px;cursor:pointer;padding:0;font-weight:600;}
+.rm:hover{color:var(--red)}
+.gb{background:#FEF2F2;border:1px solid #FECACA;border-radius:14px;padding:16px;text-align:center;margin-top:30px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
+.gb i{color:var(--red);font-size:22px}
+
+/* FAQ — clean, responsive accordion */
+.faq-section{background:linear-gradient(180deg,#fff 0%,#F8FAFC 100%)}
+.faq-intro{max-width:820px;margin:0 auto 34px;text-align:center}
+.faq-intro .ttl{font-size:clamp(30px,4vw,44px);letter-spacing:-.8px}
+.faq-intro .sub{max-width:760px;font-size:16px;line-height:1.8}
+.fq{max-width:1120px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:30px;align-items:start;padding:16px 28px}
+.fq .fi{min-width:0;border-bottom:1px solid #E8EDF3}
+.fq .fi:last-child{border-bottom:1px solid #E8EDF3}
+.fq .fqq{font-size:15px;line-height:1.55;min-height:78px;padding:19px 2px}
+.fq .faq-answer{font-size:14px;line-height:1.8;padding:0 36px 20px 2px}
+.faq-section .faq-intro .faq-kicker{background:#FFF1F1;border:1px solid #FECACA;border-radius:999px;padding:7px 14px}
+.faq-section .faq-intro .faq-kicker:before,.faq-section .faq-intro .faq-kicker:after{display:none}
+.faq-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--red);font:700 12px 'Poppins',sans-serif;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.faq-kicker:before,.faq-kicker:after{content:"";display:block;width:24px;height:2px;background:#FECACA}
+.faq-intro .ttl{margin-bottom:12px}
+.faq-intro .sub{margin:0 auto;color:#64748B}
+.fq{max-width:860px;margin:0 auto;background:#fff;padding:10px 26px;border-radius:18px;box-shadow:0 14px 40px rgba(15,23,42,.07);border:1px solid #E2E8F0}
+.fi{border-bottom:1px solid #E8EDF3;padding:0}
+.fi:last-child{border-bottom:0}
+.fqq{display:flex;justify-content:space-between;align-items:center;gap:18px;cursor:pointer;font:600 16px/1.5 'Poppins',sans-serif;width:100%;background:none;border:0;text-align:left;color:#172033;padding:21px 2px;transition:color .2s ease}
+.fqq:hover,.fqq[aria-expanded="true"]{color:var(--red)}
+.fqq:focus-visible{outline:3px solid rgba(202,53,53,.25);outline-offset:3px;border-radius:6px}
+.fq-icon{width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex:0 0 30px;border-radius:50%;background:#FFF1F1;color:var(--red);transition:transform .25s ease,background .25s ease}
+.fqq[aria-expanded="true"] .fq-icon{transform:rotate(180deg);background:var(--red);color:#fff}
+.faq-answer{display:none;color:#526071;font-size:15px;line-height:1.8;padding:0 42px 22px 2px;max-width:760px;overflow-wrap:anywhere}
+.fi.on .faq-answer{display:block;animation:faqReveal .22s ease-out}
+@keyframes faqReveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){.fq{grid-template-columns:1fr;gap:0;padding:8px 17px;border-radius:14px}.fq .fqq{font-size:15px;padding:18px 0;gap:12px;min-height:0}.fq-icon{width:28px;height:28px;flex-basis:28px}.fq .faq-answer{font-size:14px;padding:0 34px 19px 0;line-height:1.75}.faq-intro{margin-bottom:24px}.faq-intro .ttl{font-size:clamp(27px,7vw,34px)}}
+@media(prefers-reduced-motion:reduce){.fq-icon,.faq-answer{animation:none;transition:none}}
+
+/* CTA & Map */
+.cta-section{position:relative;overflow:hidden;background:radial-gradient(circle at 85% 20%,rgba(202,53,53,.28),transparent 34%),linear-gradient(135deg,#111827 0%,#202938 58%,#111827 100%);color:#fff}
+.cta-section:before{content:'';position:absolute;width:340px;height:340px;border:1px solid rgba(255,255,255,.08);border-radius:50%;left:-150px;bottom:-210px;pointer-events:none}
+.cw{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:clamp(24px,4vw,54px);box-shadow:0 24px 70px rgba(0,0,0,.2)}
+.cw>div{min-width:0}
+.cw h2{font-size:clamp(30px,4vw,48px);letter-spacing:-1px;margin:18px 0 18px;color:#fff}
+.cw h2 span{color:#FF7777}
+.cw p{color:#D1D5DB;margin-bottom:26px;font-size:16px;line-height:1.8;max-width:560px}
+.loc{display:inline-flex;align-items:center;gap:9px;background:rgba(202,53,53,.16);border:1px solid rgba(255,119,119,.38);color:#FFD2D2;font:700 12px 'Poppins',sans-serif;letter-spacing:.5px;padding:10px 14px;border-radius:999px;line-height:1.5}
+.loc i{color:#FF7777}
+.cw .btn{border-radius:12px;padding:15px 24px}
+.ci{display:flex;align-items:center;gap:14px;margin:30px 0 0}
+.ci+.ci{margin-top:18px}
+.ci i{width:48px;height:48px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+.ci h5{font:600 13px 'Poppins',sans-serif;color:var(--gray);text-transform:uppercase}
+.ci b{font:700 18px 'Poppins',sans-serif;color:var(--dark);word-break:break-word}
+.cw img{border-radius:20px;box-shadow:var(--shh);width:100%}
+.mp{border-radius:20px;overflow:hidden;height:420px;background:#E5E7EB;position:relative;box-shadow:var(--sh)}
+.mp iframe{width:100%;height:100%;border:0}
+.mo{position:absolute;top:16px;left:16px;background:#fff;padding:8px 16px;border-radius:8px;font:600 13px 'Poppins',sans-serif;box-shadow:0 4px 10px rgba(0,0,0,.1);pointer-events:none}
+
+/* Footer */
+footer{background:var(--dark);color:#94A3B8;padding:70px 0 26px}
+.fgd{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:38px;margin-bottom:50px}
+.fl{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.fl img{height:48px;background:#fff;padding:5px;border-radius:8px}
+.fl .lt .b{color:#fff}
+footer p{font-size:14px;margin-bottom:16px}
+footer h4{color:#fff;font-size:17px;margin-bottom:20px}
+footer li{margin-bottom:13px;font-size:15px}
+footer li a:hover{color:var(--red)}
+.so{display:flex;gap:10px}
+.so a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff}
+.so a:hover{background:var(--red)}
+.fc{display:flex;gap:14px;margin-bottom:18px}
+.fc i{color:#fff;background:rgba(255,255,255,.1);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fc p{margin:0;color:#CBD5E1;word-break:break-word}.fc p.h{color:#fff;font-weight:600}
+.fbm{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;text-align:center;font-size:14px}
+
+/* ============================================
+   RESPONSIVE — Trust Bar specific
+   ============================================ */
+@media(max-width:1024px){
+  .top-overlap{width:calc(100% - 32px);padding:10px 12px;margin-top:-80px;border-radius:14px}
+  /* Change to 2x2 grid on tablet/mobile */
+  .top-overlap .wrap{grid-template-columns:repeat(2, 1fr); gap:10px 5px;}
+  .ti{font-size:10px;gap:4px}
+  .ti img{width:22px;height:22px}
+  .ti div{font-size:10px;line-height:1.25}
+  
+  /* Hide the 5th item on mobile/tablet */
+  .ti:nth-child(5){display:none;}
+  
+  .sg{grid-template-columns:1fr 1fr;row-gap:44px}
+  .bg{grid-template-columns:1fr 1fr}
+  .fgd{grid-template-columns:1fr 1fr}
+  .rv{grid-template-columns:1fr;gap:30px}
+  .pl-wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .pl-col { padding: 16px; }
+}
+
+@media(max-width:768px){
+  .wrap{padding:0 16px}
+  .sec{padding:50px 0}
+  .nav,.hc{display:none}.mb{display:block}
+  .logo img{height:36px}.lt{font-size:14px}
+
+  /* HERO: Increased height to show more image, reduced top padding to move text up */
+  .hero{
+    padding:40px 0 160px; /* Reduced top padding from 80px to 40px to move text up */
+    min-height:650px; /* Made image significantly taller */
+    background:linear-gradient(180deg,rgba(17,24,39,.88) 0%,rgba(17,24,39,.6) 50%,rgba(17,24,39,.4) 100%),url('/slider.png') center/cover no-repeat;
+  }
+  .hb .btn{width:100%}
+
+  /* Trust Bar Mobile Adjustments - Moved higher on the image */
+  .top-overlap{
+    margin-top:-135px; /* Pulled up an extra 15px to overlap the hero image more */
+    border-radius:12px;
+    padding:14px 10px; /* Slightly more padding for better readability */
+    width:calc(100% - 16px);
+  }
+  .top-overlap .wrap{
+    grid-template-columns:repeat(2, 1fr);
+    gap:16px 8px; /* Increased gap for better spacing */
+  }
+  .ti{font-size:11px;gap:6px}
+  .ti img{width:24px;height:24px}
+  .ti div{font-size:11px;line-height:1.25}
+  
+  /* Ensure 5th is hidden */
+  .ti:nth-child(5){display:none;}
+
+  .fg{grid-template-columns:1fr 1fr;gap:12px}
+  .fb{padding:20px 12px}.fb i{font-size:30px;margin-bottom:10px}.fb h4{font-size:14px}.fb p{font-size:12px}
+  .sg{grid-template-columns:1fr;max-width:380px}
+  .bg{grid-template-columns:1fr}
+  .rc{flex:0 0 280px;width:280px;padding:18px}
+  .pl-wrap { grid-template-columns: 1fr; max-width: 560px; }
+  .pl-col { padding: 18px; }
+  .fq{padding:8px 17px}
+  .cw{grid-template-columns:1fr;gap:26px;padding:24px;border-radius:20px}
+  .cw .btn{width:100%}
+  .cw img{max-height:300px}
+  .mp{height:280px}
+  .fgd{grid-template-columns:1fr 1fr;gap:24px}
+  .fgd>div:first-child,.fgd>div:last-child{grid-column:1/-1}
+
+  /* Comparison table: same design as desktop, scaled down */
+  .tw{overflow:hidden;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+  .tbl{min-width:0;width:100%;table-layout:fixed}
+  .tbl th{font-size:11px;padding:13px 4px;letter-spacing:.3px}
+  .tbl th:first-child,.tbl td:first-child{width:28%;padding-left:8px}
+  .tbl td{font-size:12px;line-height:1.4;padding:11px 4px}
+  .tbl td:first-child{font-size:12px;font-weight:600}
+  .tbl td i{font-size:12px;margin-right:4px}
+  .tbl td:first-child i{margin-right:5px}
+}
+
+@media(max-width:480px){
+  .rc{flex:0 0 260px;width:260px;padding:16px}
+  .pl-feats { gap: 6px; }
+  .pl-feats div { font-size: 10px; }
+  .pl-item-top h4 { font-size: 13px; }
+  .pl-item-top .price { font-size: 17px; }
+  .pl-custom { font-size: 13px; padding: 14px; }
+  .rv{grid-template-columns:1fr}
+  .rs{padding:20px 10px}
+
+  /* Trust bar on very small screens - moved much higher as requested */
+  .top-overlap{padding:12px 6px;margin-top:-148px;border-radius:10px}
+  .top-overlap .wrap{gap:14px 4px}
+  .ti{font-size:10px;gap:4px}
+  .ti img{width:20px;height:20px}
+  .ti div{font-size:10px;line-height:1.2}
+}
+
+/* Comparison table on very small phones */
+@media(max-width:380px){
+  .tbl th{font-size:10px;padding:11px 2px}
+  .tbl td{font-size:11px;padding:10px 3px}
+  .tbl td i{font-size:11px;margin-right:3px}
+}
+
+@media (min-width: 1025px) {
+  .pl-wrap { max-width: 1000px; }
+  .pl-item { padding: 14px; }
+  .pl-feats div { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) { .rt { animation: none; } }
+
+/* FINAL RESPONSIVE POLISH: independent FAQ columns + light branded CTA */
+.faq-section{padding:clamp(54px,7vw,92px) 0;background:linear-gradient(180deg,#fff 0%,#F7F9FC 100%)}
+.faq-section>.wrap{max-width:1380px}
+.faq-intro{max-width:940px;margin:0 auto 42px;text-align:center}
+.faq-intro .faq-kicker{display:inline-flex;align-items:center;gap:8px;background:#FFF1F1;border:1px solid #FECACA;border-radius:999px;padding:8px 15px;color:var(--red);font:700 12px 'Poppins',sans-serif;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:18px}
+.faq-intro .ttl{font-size:clamp(32px,4.2vw,52px);line-height:1.15;letter-spacing:-1.2px;margin-bottom:16px}
+.faq-intro .sub{max-width:760px;margin:0 auto;color:#64748B;font-size:clamp(15px,1.4vw,18px);line-height:1.75}
+.fq{max-width:1280px;width:100%;margin:0 auto;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:14px 24px}
+.fq-col{min-width:0;display:flex;flex-direction:column;gap:14px}
+.fq .fi{min-width:0;align-self:stretch;background:#fff;border:1px solid #E4EAF2;border-radius:15px;overflow:hidden;box-shadow:0 5px 18px rgba(15,23,42,.035);transition:border-color .2s ease,box-shadow .2s ease}
+.fq .fi:last-child{border-bottom:1px solid #E4EAF2}
+.fq .fi.on{border-color:#F2B5B5;box-shadow:0 10px 26px rgba(202,53,53,.08)}
+.fq .fqq{min-height:76px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:21px 22px;font:600 16px/1.5 'Poppins',sans-serif;color:#172033;text-align:left;background:#fff;border:0;cursor:pointer}
+.fq .fqq:hover,.fq .fqq[aria-expanded="true"]{color:var(--red)}
+.fq .fq-icon{width:34px;height:34px;flex:0 0 34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#FFF1F1;color:var(--red);transition:transform .25s ease,background .25s ease,color .25s ease}
+.fq .fqq[aria-expanded="true"] .fq-icon{transform:rotate(180deg);background:var(--red);color:#fff}
+.fq .faq-answer{display:none;max-width:none;margin:0;padding:0 22px 23px;color:#526071;font:400 15px/1.8 'Inter',sans-serif;overflow-wrap:anywhere}
+.fq .fi.on .faq-answer{display:block;animation:faqReveal .22s ease-out}
+/* Branded CTA: light, welcoming, no dark section */
+.cta-section{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#FFF7F7 100%);color:var(--dark);isolation:isolate}
+.cta-section:before{content:"";position:absolute;width:380px;height:380px;border:1px solid rgba(202,53,53,.10);border-radius:50%;left:-190px;bottom:-230px;pointer-events:none;z-index:-1}
+.cta-section:after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-130px;top:-150px;background:rgba(202,53,53,.055);pointer-events:none;z-index:-1}
+.cw{position:relative;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(28px,4vw,56px);align-items:center;max-width:1200px;margin:0 auto;padding:clamp(24px,4.2vw,52px);background:#fff;border:1px solid #F3D5D5;border-radius:28px;box-shadow:0 20px 60px rgba(31,41,55,.08)}
+.cw>div{min-width:0}
+.cw h2{font-size:clamp(30px,3.6vw,46px);line-height:1.18;letter-spacing:-1px;margin:20px 0 16px;color:var(--dark)}
+.cw h2 span{color:var(--red)}
+.cw p{color:#5B6472;margin-bottom:25px;font-size:16px;line-height:1.8;max-width:560px}
+.loc{display:inline-flex;align-items:center;gap:9px;background:#FFF1F1;border:1px solid #FECACA;color:#A82B2B;font:700 12px/1.5 'Poppins',sans-serif;letter-spacing:.45px;padding:10px 14px;border-radius:999px;max-width:100%}
+.loc i{color:var(--red)}
+.cw .btn{border-radius:12px;padding:15px 24px;box-shadow:0 8px 20px rgba(202,53,53,.22)}
+.ci{display:flex;align-items:center;gap:14px;margin:24px 0 0}
+.ci+.ci{margin-top:16px}
+.ci i{width:46px;height:46px;flex:0 0 46px;background:#FFF1F1;color:var(--red);border:1px solid #FECACA;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.ci h5{font:600 12px 'Poppins',sans-serif;color:#6B7280;text-transform:uppercase;margin-bottom:3px}
+.ci b{font:700 16px 'Poppins',sans-serif;color:var(--dark);overflow-wrap:anywhere}
+.cw img{width:100%;max-height:420px;object-fit:cover;border:1px solid #F3D5D5;border-radius:22px;box-shadow:0 16px 38px rgba(17,24,39,.12)}
+@media(max-width:768px){
+ .faq-section{padding:48px 0}.faq-intro{margin-bottom:26px}
+ .faq-intro .ttl{font-size:clamp(29px,8vw,38px);letter-spacing:-.7px}
+ .faq-intro .sub{font-size:15px;padding:0 4px}
+ .fq{grid-template-columns:1fr;gap:12px;max-width:620px}.fq-col{gap:12px}
+ .fq .fqq{min-height:0;padding:17px 16px;font-size:15px;gap:12px}
+ .fq .fq-icon{width:30px;height:30px;flex-basis:30px}
+ .fq .faq-answer{padding:0 16px 19px;font-size:14px;line-height:1.75}
+ .cw{grid-template-columns:1fr;gap:24px;padding:22px;border-radius:22px}
+ .cw h2{font-size:clamp(29px,7.5vw,38px);margin-top:17px}.cw p{font-size:15px;margin-bottom:22px}
+ .loc{font-size:10px;letter-spacing:.25px;padding:9px 11px}
+ .cw .btn{width:100%;padding:14px 18px;font-size:13px}.cw img{max-height:280px;object-fit:cover}
+ .ci{margin-top:20px}
+}
+@media(max-width:380px){.fq .fqq{font-size:14px;padding:15px 12px}.fq .faq-answer{padding:0 12px 17px}.cw{padding:17px}.loc{align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){.fq .fq-icon,.fq .faq-answer,.fq .fi{animation:none;transition:none}}
+
+</style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="container header-inner">
-            <div class="logo-wrapper">
-                <img src="/logo.jpeg" alt="New Method Driving School" class="logo-img">
-                <div class="company-text">
-                    <span class="line1">New Method</span>
-                    <span class="line2">Driving School</span>
-                </div>
-            </div>
-            <nav class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Packages</a>
-                <a href="#">Areas</a>
-                <a href="#">Reviews</a>
-                <a href="#">Contact</a>
-            </nav>
-            <div class="header-contact-card">
-                <span>Book Your Lessons Today!</span>
-                <div class="header-phone">416-555-0192</div>
-            </div>
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
+<header>
+ <div class="wrap hd">
+  <a href="#" class="logo"><img src="/logo.jpeg" alt="New Method Driving School"><div class="lt"><span class="a">New Method</span><span class="b">Driving School</span></div></a>
+  <nav class="nav"><a href="#">Home</a><a href="#">About</a><a href="pricing.html">Packages</a><a href="#">Areas</a><a href="#reviews">Reviews</a><a href="contactus.html">Contact</a></nav>
+  <div class="hc"><span>Book Your Lessons Today!</span><b>416-555-0192</b></div>
+  <button class="mb" id="mb" aria-label="Menu"><i class="fas fa-bars"></i></button>
+ </div>
+ <div class="mm" id="mm"><a href="#">Home</a><a href="#">About</a><a href="pricing.html">Packages</a><a href="#">Areas</a><a href="#reviews">Reviews</a><a href="contactus.html">Contact</a></div>
+</header>
+
+<!-- Hero section with text at top and overlapping trust bar -->
+<section class="hero-wrap">
+  <div class="hero">
+    <div class="wrap an">
+      <h1>Pass Your G2 Or G With Confidence At An MTO Approved Driving School In Scarborough</h1>
+      <p>Beginner Driver Education, private driving lessons, and G2/G road test preparation from certified instructors. Online, in-class, and in-car training available across Scarborough, Pickering, and Ajax.</p>
+      <div class="hb"><button class="btn btn-blue">Book Your First Lesson <i class="fas fa-arrow-right"></i></button><button class="btn btn-blue">Explore Packages</button></div>
+    </div>
+  </div>
+
+  <!-- Trust Bar overlapping the hero bottom — Desktop: 5 items, Mobile: 4 items in 2x2 -->
+  <div class="top-overlap">
+    <div class="wrap">
+      <div class="ti an">
+        <img src="icon_1.png" alt="MTO Approved">
+        <div>MTO-Approved &amp;<br>Licensed</div>
+      </div>
+      <div class="ti an">
+        <img src="icon_2.png" alt="Google Reviews">
+        <div>900+ 5 Star Google<br>Reviews</div>
+      </div>
+      <div class="ti an">
+        <img src="icon_3.png" alt="Canadian Choice Award">
+        <div>Canadian Choice Award<br>Winner 2025-2026</div>
+      </div>
+      <div class="ti an">
+        <img src="icon_4.png" alt="Top 3 Driving Schools">
+        <div>Top 3 Driving Schools by<br>Three Best Rated Website</div>
+      </div>
+      <div class="ti an">
+        <img src="icon_5.png" alt="Former DriveTest Examiners">
+        <div>Former DriveTest<br>Examiners</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec bg-white">
+ <div class="wrap tc">
+  <h2 class="ttl an">Choose the Right Course <span>for Your Driving Goal</span></h2>
+  <p class="sub an">Whether you're starting from scratch, preparing for your G2 or G road test, or need instructor support on test day, choose the option that fits you best.</p>
+  <div class="g3">
+   <div class="card cc an"><img src="/images (3).jfif" alt="Beginner Driver"><h3>Beginner Driver Education (BDE)</h3><ul class="cl"><li><i class="fas fa-check-circle"></i>MTO-approved beginner driver education with online learning and one-on-one in-car lessons.</li><li><i class="fas fa-check-circle"></i><span><strong>Best for:</strong> New drivers starting their licensing journey</span></li></ul><div><button class="btn btn-sm">View BDE Courses</button></div></div>
+   <div class="card cc an"><img src="/image (8).png" alt="Private Lessons"><h3>Private G2 / G Driving Lessons</h3><ul class="cl"><li><i class="fas fa-check-circle"></i>One-on-one driving lessons designed for G2 and G preparation, confidence building, and skill improvement.</li><li><i class="fas fa-check-circle"></i><span><strong>Best for:</strong> Students who already have experience and want focused in-car practice</span></li></ul><div><a href="#private" class="btn btn-sm">Explore Private Lessons</a></div></div>
+   <div class="card cc an"><img src="/roaddrive.jfif" alt="Road Test"><h3>Road Test Preparation &amp; Car Use</h3><ul class="cl"><li><i class="fas fa-check-circle"></i>Get road test practice, last-minute preparation, and use of an instructor vehicle for your G2 or G test.</li><li><i class="fas fa-check-circle"></i><span><strong>Best for:</strong> Students who are close to their test date and want extra support</span></li></ul><div><button class="btn btn-sm">Book Road Test Support</button></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec">
+ <div class="wrap tc">
+  <h2 class="ttl an">Why <span>Students</span> and <span>New Drivers</span> Choose Us</h2>
+  <div class="fg" style="margin-top:36px">
+   <div class="card fb an"><i class="fas fa-car-side"></i><h4>Former DriveTest Examiners</h4><p>Learn from the people who used to grade the test. Know exactly what examiners look for.</p></div>
+   <div class="card fb an"><i class="fas fa-headset"></i><h4>Patient, Supportive Instructors</h4><p>Nervous drivers welcome. Our instructors specialize in anxious and first-time drivers.</p></div>
+   <div class="card fb an"><i class="fas fa-stopwatch"></i><h4>High First-Attempt Pass Rate</h4><p>Students who complete our BDE course consistently pass their G2 on the first try.</p></div>
+   <div class="card fb an"><i class="fas fa-chalkboard-teacher"></i><h4>One-on-One In-Car Training</h4><p>No group sessions. Every lesson is personalized to your pace and skill level.</p></div>
+   <div class="card fb an"><i class="fas fa-tag"></i><h4>Free Pickup &amp; Drop-off</h4><p>We collect you from home, school, or work across Scarborough, Pickering, and Ajax.</p></div>
+   <div class="card fb an"><i class="fas fa-laptop-code"></i><h4>9-Language Online BDE Course</h4><p>Learn in English, French, Arabic, Chinese, Spanish, Italian, Russian, Turkish, or German.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec bg-white">
+ <div class="wrap">
+  <h2 class="ttl tc an">Your Road to Licensed in <span>4 Simple Steps</span></h2>
+  <div class="sg">
+   <div class="st an"><div class="sc"><img src="ChatGPT 1.png" alt="Step 1"></div><div class="sb"><h4>Choose Your Package:</h4><p>Pick Silver, Gold, or Platinum based on your goals.</p></div></div>
+   <div class="st an"><div class="sc"><img src="ChatGPT2.png" alt="Step 2"></div><div class="sb"><h4>Start Your Online BDE:</h4><p>Begin the MTO-approved BDE course at your own pace in 9 languages.</p></div></div>
+   <div class="st an"><div class="sc"><img src="ChatGPT3.png" alt="Step 3"></div><div class="sb"><h4>In-Car Lessons:</h4><p>One-on-one training, tailored to your pace, with free pickup and drop-off.</p></div></div>
+   <div class="st an"><div class="sc"><img src="ChatGPT4.png" alt="Step 4"></div><div class="sb"><h4>Pass Your Test:</h4><p>Use our instructor's car for the road test and walk out with your license.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="packages">
+ <div class="wrap">
+  <div class="tc an"><h2 class="ttl">Choose Your <span>BDE Package</span></h2><p class="sub" style="margin-bottom:44px">All packages include 30 hours of MTO-approved online training, certified in-car lessons, free pickup &amp; drop-off, and insurance-eligible completion.</p></div>
+  <div class="bg">
+   <div class="card bc an"><div class="bh"><i class="fas fa-shield-alt silver"></i><div><h3 style="color:#6B7280">Silver</h3><p>Essential Start</p></div></div><div class="pr">$565 <span>+ HST</span></div><p class="bd">Best for new beginners who want the essential BDE package</p>
+    <ul class="ck"><li><i class="fas fa-check-circle"></i>MTO-approved online course</li><li><i class="fas fa-check-circle"></i>10 hours in-car lessons</li><li><i class="fas fa-check-circle"></i>Free pickup &amp; drop-off</li><li><i class="fas fa-check-circle"></i>Insurance-eligible completion</li><li><i class="fas fa-check-circle"></i>Affordable entry point</li></ul>
+    <div class="bf"><div class="bfi"><i class="fas fa-car"></i>Free pickup &amp; drop-off across Durham Region</div><button class="bb">Get Started</button></div></div>
+   <div class="card bc an"><div class="pop"><i class="fas fa-award"></i> Most Popular</div><div class="bh"><i class="fas fa-star gold"></i><div><h3 style="color:#D97706">Gold</h3><p>Test Day Car Included</p></div></div><div class="pr">$675 <span>+ HST</span></div><p class="bd">Best for most students who want added convenience and test-day support</p>
+    <ul class="ck"><li><i class="fas fa-check-circle"></i>Everything in Silver</li><li><i class="fas fa-check-circle"></i>Additional convenience</li><li><i class="fas fa-check-circle"></i>Instructor vehicle included for road test</li><li><i class="fas fa-check-circle"></i>10 hours in-car lessons</li><li><i class="fas fa-check-circle"></i>Stronger value for students close to test readiness</li></ul>
+    <div class="bf"><div class="bfi"><i class="fas fa-car"></i>Free pickup &amp; drop-off across Durham Region</div><button class="bb">Get Started</button></div></div>
+   <div class="card bc an"><div class="bh"><i class="fas fa-crown plat"></i><div><h3 style="color:#1D4ED8">Platinum</h3><p>Most In-Car Hours</p></div></div><div class="pr">$750 <span>+ HST</span></div><p class="bd">Best for students who want extra practice and stronger road test confidence</p>
+    <ul class="ck"><li><i class="fas fa-check-circle"></i>12 hours in-car lessons</li><li><i class="fas fa-check-circle"></i>Reduce Road Test Wait Time (8 Months)</li><li><i class="fas fa-check-circle"></i>Eligible for Insurance discounts</li><li><i class="fas fa-check-circle"></i>Free Pick up and Drop off</li><li><i class="fas fa-check-circle"></i>Instructor’s Vehicle for Road Test</li></ul>
+    <div class="bf"><div class="bfi"><i class="fas fa-car"></i>Free pickup &amp; drop-off across Durham Region</div><button class="bb">Get Started</button></div></div>
+  </div>
+  <div class="call an"><i class="fas fa-phone-alt"></i><span>Not sure which package is right for you? <a href="tel:905-922-2544">Call 905-922-2544</a> and we’ll help you choose.</span></div>
+  <div class="tw an"><table class="tbl">
+   <thead><tr><th scope="col">Features</th><th scope="col">Silver</th><th scope="col">Gold</th><th scope="col">Platinum</th></tr></thead>
+   <tbody>
+    <tr><td data-label="Feature"><i class="fas fa-laptop"></i> Online Training</td><td data-label="Silver">30 hours</td><td data-label="Gold">30 hours</td><td data-label="Platinum">30 hours</td></tr>
+    <tr><td data-label="Feature"><i class="fas fa-car-side"></i> In-car lessons</td><td data-label="Silver">10 hours</td><td data-label="Gold">10 hours</td><td data-label="Platinum">12 hours</td></tr>
+    <tr><td data-label="Feature"><i class="fas fa-car-crash"></i> Road test car</td><td data-label="Silver" class="no"><i class="fas fa-times-circle"></i> Not included</td><td data-label="Gold"><i class="fas fa-check-circle"></i> Included</td><td data-label="Platinum"><i class="fas fa-check-circle"></i> Included</td></tr>
+    <tr><td data-label="Feature"><i class="fas fa-map-marker-alt"></i> Pickup &amp; drop-off</td><td data-label="Silver">Free across Durham</td><td data-label="Gold">Free across Durham</td><td data-label="Platinum">Free across Durham</td></tr>
+    <tr><td data-label="Feature"><i class="fas fa-file-invoice"></i> Insurance certificate</td><td data-label="Silver">Included</td><td data-label="Gold">Included</td><td data-label="Platinum">Included</td></tr>
+    <tr><td data-label="Feature">Price</td><td data-label="Silver">$565</td><td data-label="Gold">$675</td><td data-label="Platinum">$750</td></tr>
+   </tbody></table></div>
+ </div>
+</section>
+
+<!-- Private Lessons Section -->
+<section class="sec bg-white" id="private">
+ <div class="wrap">
+  <div class="tc an"><h2 class="ttl">Need <span>Private G2 or G Lessons</span> Instead?</h2><p class="sub" style="margin-bottom:10px">Already have your G1 or G2? Brush up on specific skills, prepare for your test day, or book just the hours you need.</p></div>
+
+  <div class="pl-wrap an">
+    <!-- G2 Lessons Column -->
+    <div class="pl-col">
+      <div class="pl-head">
+        <i class="fas fa-life-ring"></i>
+        <div>
+          <h3>G2 Lessons</h3>
+          <p>Focused practice for beginners building confidence</p>
         </div>
-        <!-- Mobile Dropdown Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Packages</a>
-            <a href="#">Areas</a>
-            <a href="#">Reviews</a>
-            <a href="#">Contact</a>
+      </div>
+      
+      <div class="pl-item">
+        <div class="pl-item-top"><h4>1 Hour Lesson</h4><span class="price">$ 45</span></div>
+        <div class="pl-feats">
+          <div><i class="fas fa-calendar-alt"></i><span>Flexible<br>Scheduling</span></div>
+          <div><i class="fas fa-car"></i><span>Free pickup &<br>drop-off</span></div>
+          <div><i class="fas fa-user-check"></i><span>Certified<br>instructor</span></div>
         </div>
-    </header>
+        <a href="https://championsdrivingacademy.ca/checkout/?add-to-cart=5054" class="pl-btn">Book Now</a>
+      </div>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content animate fade-in-up">
-                <h1>Pass Your G2 Or G With Confidence At An MTO Approved Driving School In Scarborough</h1>
-                <p>Beginner Driver Education, private driving lessons, and G2/G road test preparation from certified instructors. Online, in-class, and in-car training available across Scarborough, Pickering, and Ajax.</p>
-                <div class="hero-buttons">
-                    <button class="hero-btn-primary">
-                        Book Your First Lesson 
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <button class="hero-btn-secondary">
-                        Explore Packages
-                    </button>
-                </div>
-            </div>
+      <div class="pl-item">
+        <div class="pl-item-top"><h4>5 Hour Package</h4><span class="price">$ 215</span></div>
+        <div class="pl-feats">
+          <div><i class="fas fa-calendar-alt"></i><span>Flexible<br>Scheduling</span></div>
+          <div><i class="fas fa-car"></i><span>Free pickup &<br>drop-off</span></div>
+          <div><i class="fas fa-user-check"></i><span>Certified<br>instructor</span></div>
         </div>
-    </section>
+        <a href="https://championsdrivingacademy.ca/checkout/?add-to-cart=5059" class="pl-btn">Book Now</a>
+      </div>
 
-    <!-- NEW TOP BAR (IMAGES INSTEAD OF ICONS) -->
-    <section class="new-top-bar">
-        <div class="container new-top-bar-inner">
-            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <!-- Replace src with your actual image path -->
-                <img src="icon_1.png" alt="MTO Approved" class="custom-icon-img">
-                <div class="new-top-text">MTO-Approved &<br>Licensed</div>
-            </div>
-            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.2s;">
-                <!-- Replace src with your actual image path -->
-                <img src="icon_2.png" alt="Google Reviews" class="custom-icon-img">
-                <div class="new-top-text">900+ 5 Star Google<br>Reviews</div>
-            </div>
-            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.3s;">
-                <!-- Replace src with your actual image path -->
-                <img src="icon_3.png" alt="Canadian Choice Award" class="custom-icon-img">
-                <div class="new-top-text">Canadian Choice Award<br>Winner 2025-2026</div>
-            </div>
-            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.4s;">
-                <!-- Replace src with your actual image path -->
-                <img src="icon_4.png" alt="Top 3 Driving Schools" class="custom-icon-img">
-                <div class="new-top-text">Top 3 Driving Schools by<br>Three Best Rated Website</div>
-            </div>
-            <!-- This 5th item will hide on mobile -->
-            <div class="new-top-item animate fade-in-up" style="transition-delay: 0.5s;">
-                <!-- Replace src with your actual image path -->
-                <img src="icon_5.png" alt="Former DriveTest Examiners" class="custom-icon-img">
-                <div class="new-top-text">Former DriveTest<br>Examiners</div>
-            </div>
+      <div class="pl-item">
+        <div class="pl-item-top"><h4>10 Hour Package</h4><span class="price">$ 425</span></div>
+        <div class="pl-feats">
+          <div><i class="fas fa-calendar-alt"></i><span>Flexible<br>Scheduling</span></div>
+          <div><i class="fas fa-car"></i><span>Free pickup &<br>drop-off</span></div>
+          <div><i class="fas fa-user-check"></i><span>Certified<br>instructor</span></div>
         </div>
-    </section>
+        <a href="https://championsdrivingacademy.ca/checkout/?add-to-cart=5058" class="pl-btn">Book Now</a>
+      </div>
+    </div>
 
-    <!-- COURSE SELECTION -->
-    <section class="section-padding">
-        <div class="container text-center">
-            <h2 class="section-title animate fade-in-up">Choose the Right Course <span>for Your Driving Goal</span></h2>
-            <p class="section-subtitle animate fade-in-up" style="transition-delay: 0.1s;">Whether you're starting from scratch, preparing for your G2 or G road test, or need instructor support on test day, choose the option that fits you best.</p>
-
-            <div class="course-grid-new">
-                <div class="course-card-new animate fade-in-left" style="transition-delay: 0.1s;">
-                    <img src="/images (3).jfif" alt="Beginner Driver">
-                    <h3>Beginner Driver Education (BDE)</h3>
-                    <ul class="course-list">
-                        <li><i class="fas fa-check-circle"></i> MTO-approved beginner driver education with online learning and one-on-one in-car lessons.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Best for:</strong> New drivers starting their licensing journey</li>
-                    </ul>
-                    <div class="course-btn-wrapper">
-                        <button class="btn btn-red btn-small">View BDE Courses</button>
-                    </div>
-                </div>
-
-                <div class="course-card-new animate fade-in-up" style="transition-delay: 0.2s;">
-                    <img src="/image (8).png" alt="Private Lessons">
-                    <h3>Private G2 / G Driving Lessons</h3>
-                    <ul class="course-list">
-                        <li><i class="fas fa-check-circle"></i> One-on-one driving lessons designed for G2 and G preparation, confidence building, and skill improvement.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Best for:</strong> Students who already have experience and want focused in-car practice</li>
-                    </ul>
-                    <div class="course-btn-wrapper">
-                        <button class="btn btn-red btn-small">Explore Private Lessons</button>
-                    </div>
-                </div>
-
-                <div class="course-card-new animate fade-in-right" style="transition-delay: 0.3s;">
-                    <img src="/roaddrive.jfif" alt="Road Test">
-                    <h3>Road Test Preparation & Car Use</h3>
-                    <ul class="course-list">
-                        <li><i class="fas fa-check-circle"></i> Get road test practice, last-minute preparation, and use of an instructor vehicle for your G2 or G test.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Best for:</strong> Students who are close to their test date and want extra support</li>
-                    </ul>
-                    <div class="course-btn-wrapper">
-                        <button class="btn btn-red btn-small">Book Road Test Support</button>
-                    </div>
-                </div>
-            </div>
+    <!-- G Lessons Column -->
+    <div class="pl-col">
+      <div class="pl-head">
+        <i class="fas fa-car"></i>
+        <div>
+          <h3>G Lessons</h3>
+          <p>Ideal for full G Road-test prep and skill refreshers</p>
         </div>
-    </section>
-
-    <!-- WHY CHOOSE US -->
-    <section class="section-padding" style="background: var(--bg-light);">
-        <div class="container text-center">
-            <h2 class="section-title animate fade-in-up">Why <span>Students</span> and <span>New Drivers</span> Choose Us</h2>
-            
-            <div class="features-grid-new">
-                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.1s;">
-                    <div class="feature-icon-new"><i class="fas fa-car-side"></i></div>
-                    <h4>Former DriveTest Examiners</h4>
-                    <p>Learn from the people who used to grade the test. Know exactly what examiners look for.</p>
-                </div>
-                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="feature-icon-new"><i class="fas fa-headset"></i></div>
-                    <h4>Patient, Supportive Instructors</h4>
-                    <p>Nervous drivers welcome. Our instructors specialize in anxious and first-time drivers.</p>
-                </div>
-                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.3s;">
-                    <div class="feature-icon-new"><i class="fas fa-stopwatch"></i></div>
-                    <h4>High First-Attempt Pass Rate</h4>
-                    <p>Students who complete our BDE course consistently pass their G2 on the first try.</p>
-                </div>
-                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.4s;">
-                    <div class="feature-icon-new"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <h4>One-on-One In-Car Training</h4>
-                    <p>No group sessions. Every lesson is personalized to your pace and skill level.</p>
-                </div>
-                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.5s;">
-                    <div class="feature-icon-new"><i class="fas fa-tag"></i></div>
-                    <h4>Free Pickup & Drop-off</h4>
-                    <p>We collect you from home, school, or work across Scarborough, Pickering, and Ajax.</p>
-                </div>
-                <div class="feature-box-new animate fade-in-up" style="transition-delay: 0.6s;">
-                    <div class="feature-icon-new"><i class="fas fa-laptop-code"></i></div>
-                    <h4>9-Language Online BDE Course</h4>
-                    <p>Learn in English, French, Arabic, Chinese, Spanish, Italian, Russian, Turkish, or German.</p>
-                </div>
-            </div>
+      </div>
+      
+      <div class="pl-item">
+        <div class="pl-item-top"><h4>1 Hour Lesson</h4><span class="price">$ 50</span></div>
+        <div class="pl-feats">
+          <div><i class="fas fa-calendar-alt"></i><span>Flexible<br>Scheduling</span></div>
+          <div><i class="fas fa-car"></i><span>Free pickup &<br>drop-off</span></div>
+          <div><i class="fas fa-user-check"></i><span>Certified<br>instructor</span></div>
         </div>
-    </section>
+        <a href="https://championsdrivingacademy.ca/checkout/?add-to-cart=5060" class="pl-btn">Book Now</a>
+      </div>
 
-    <!-- STEPS SECTION (CLEANED UP) -->
-    <section class="steps-section-wrapper">
-        <div class="container">
-            <div class="steps-header">
-                <h2 class="animate fade-in-up">Your Road to Licensed in <span>4 Simple Steps</span></h2>
-            </div>
-            
-            <div class="steps-container-new">
-                <!-- Step 1 -->
-                <div class="step-item-new animate zoom-in" style="transition-delay: 0.1s;">
-                    <div class="step-circle-wrapper">
-                        <!-- Put your image with the number 1 here -->
-                        <img src="ChatGPT 1.png" alt="Step 1" class="step-img">
-                    </div>
-                    <div class="step-card-new">
-                        <h4>Choose Your Package:</h4>
-                        <p>Pick Silver, Gold, or Platinum based on your goals.</p>
-                        <div class="step-bottom-new">
-                            <!-- Put your bottom icon here -->
-                            <img src="ChatGPT2.png" alt="PayPal" class="step-bottom-img">
-                            Flexible payment options
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="step-item-new animate zoom-in" style="transition-delay: 0.2s;">
-                    <div class="step-circle-wrapper">
-                        <!-- Put your image with the number 2 here -->
-                        <img src="ChatGPT2.png" alt="Step 2" class="step-img">
-                    </div>
-                    <div class="step-card-new">
-                        <h4>Start Your Online BDE:</h4>
-                        <p>Begin the MTO-approved BDE course at your own pace in 9 languages.</p>
-                        <div class="step-bottom-new">
-                            <!-- Put your bottom icon here -->
-                            <img src="globe-icon.png" alt="Globe" class="step-bottom-img">
-                            9 languages available
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="step-item-new animate zoom-in" style="transition-delay: 0.3s;">
-                    <div class="step-circle-wrapper">
-                        <!-- Put your image with the number 3 here -->
-                        <img src="ChatGPT3.png" alt="Step 3" class="step-img">
-                    </div>
-                    <div class="step-card-new">
-                        <h4>In-Car Lessons:</h4>
-                        <p>One-on-one training, tailored to your pace, with free pickup and drop-off.</p>
-                        <div class="step-bottom-new">
-                            <!-- Put your bottom icon here -->
-                            <img src="car-icon.png" alt="Car" class="step-bottom-img">
-                            Free pickup & drop-off
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="step-item-new animate zoom-in" style="transition-delay: 0.4s;">
-                    <div class="step-circle-wrapper">
-                        <!-- Put your image with the number 4 here -->
-                        <img src="ChatGPT4.png" alt="Step 4" class="step-img">
-                    </div>
-                    <div class="step-card-new">
-                        <h4>Pass Your Test:</h4>
-                        <p>Use our instructor's car for the road test and walk out with your license.</p>
-                        <div class="step-bottom-new">
-                            <!-- Put your bottom icon here -->
-                            <img src="shield-icon.png" alt="Shield" class="step-bottom-img">
-                            Your Success. Our Promise.
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="pl-item">
+        <div class="pl-item-top"><h4>5 Hour Package</h4><span class="price">$ 240</span></div>
+        <div class="pl-feats">
+          <div><i class="fas fa-calendar-alt"></i><span>Flexible<br>Scheduling</span></div>
+          <div><i class="fas fa-car"></i><span>Free pickup &<br>drop-off</span></div>
+          <div><i class="fas fa-user-check"></i><span>Certified<br>instructor</span></div>
         </div>
-    </section>
+        <a href="https://championsdrivingacademy.ca/checkout/?add-to-cart=5061" class="pl-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
 
-    <!-- NEW BDE PACKAGES SECTION (REPLACED) -->
-    <section class="bde-package-section">
-        <div class="container">
-            <div class="bde-header animate fade-in-up">
-                <h2>Choose Your <span>BDE Package</span></h2>
-                <p>All packages include 30 hours of MTO-approved online training, certified in-car lessons, free pickup & drop-off, and insurance-eligible completion.</p>
-            </div>
+  <!-- Custom Banner -->
+  <div class="pl-custom an">
+    <i class="fas fa-phone-alt"></i> Need something custom? Call us and we’ll build a plan for you. Call <a href="tel:905-922-2544">905-922-2544</a>
+  </div>
 
-            <div class="bde-cards-grid">
-                <!-- Silver Card -->
-                <div class="bde-card animate fade-in-left" style="transition-delay: 0.1s;">
-                    <div class="bde-card-header">
-                        <i class="fas fa-shield-alt bde-icon silver"></i>
-                        <div class="bde-title-wrap">
-                            <h3 class="silver-text">Silver</h3>
-                            <p>Essential Start</p>
-                        </div>
-                    </div>
-                    <div class="bde-price">$ 565 <span>+ HST</span></div>
-                    <p class="bde-desc">Best for new beginners who want the essential BDE package</p>
-                    
-                    <ul class="bde-list">
-                        <li><i class="fas fa-check-circle"></i> MTO-approved online course</li>
-                        <li><i class="fas fa-check-circle"></i> 10 hours in-car lessons</li>
-                        <li><i class="fas fa-check-circle"></i> Free pickup & drop-off</li>
-                        <li><i class="fas fa-check-circle"></i> Insurance-eligible completion</li>
-                        <li><i class="fas fa-check-circle"></i> Affordable entry point</li>
-                    </ul>
-                    
-                    <div class="bde-footer">
-                        <div class="bde-footer-item">
-                            <i class="fas fa-car"></i> Free pickup & drop-off across Durham Region
-                        </div>
-                        <button class="bde-btn">Get Started</button>
-                    </div>
-                </div>
+ </div>
+</section>
 
-                <!-- Gold Card -->
-                <div class="bde-card animate fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="bde-popular-badge"><i class="fas fa-award"></i> Most Popular</div>
-                    <div class="bde-card-header">
-                        <i class="fas fa-star bde-icon gold"></i>
-                        <div class="bde-title-wrap">
-                            <h3 class="gold-text">Gold</h3>
-                            <p>Test Day Car Included</p>
-                        </div>
-                    </div>
-                    <div class="bde-price">$ 675 <span>+ HST</span></div>
-                    <p class="bde-desc">Best for most students who want added convenience and test-day support</p>
-                    
-                    <ul class="bde-list">
-                        <li><i class="fas fa-check-circle"></i> Everything in Silver</li>
-                        <li><i class="fas fa-check-circle"></i> Additional convenience</li>
-                        <li><i class="fas fa-check-circle"></i> Instructor vehicle included for road test</li>
-                        <li><i class="fas fa-check-circle"></i> 10 hours in-car lessons</li>
-                        <li><i class="fas fa-check-circle"></i> Stronger value for students close to test readiness</li>
-                    </ul>
-                    
-                    <div class="bde-footer">
-                        <div class="bde-footer-item">
-                            <i class="fas fa-car"></i> Free pickup & drop-off across Durham Region
-                        </div>
-                        <button class="bde-btn">Get Started</button>
-                    </div>
-                </div>
+<section class="sec" id="reviews">
+ <div class="wrap">
+  <div class="tc an"><h2 class="ttl">What our <span>Students</span> and New <span>Drivers</span> Say</h2><p class="sub" style="margin-bottom:36px">Over 900+ five-star reviews on Google. Here are just a few of the stories from students who passed with us.</p></div>
+  
+  <div class="rv an">
+   <div class="rs">
+     <b class="ex">EXCELLENT</b>
+     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+     <p>Based on <strong>902 reviews</strong></p>
+     <div class="gl"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>
+   </div>
+   
+   <div class="rw">
+     <div class="rt" id="rt">
+       <!-- Populated via JS for infinite scroll -->
+     </div>
+   </div>
+  </div>
+  
+  <div class="tc" style="margin-top:30px"><a class="btn btn-sm" href="#">View All Reviews</a></div>
+  <div class="gb"><i class="fas fa-star"></i><span>Read All <strong>900+ Reviews on Google</strong></span></div>
+ </div>
+</section>
 
-                <!-- Platinum Card -->
-                <div class="bde-card animate fade-in-right" style="transition-delay: 0.3s;">
-                    <div class="bde-card-header">
-                        <i class="fas fa-crown bde-icon platinum"></i>
-                        <div class="bde-title-wrap">
-                            <h3 class="platinum-text">Platinum</h3>
-                            <p>Most In-Car Hours</p>
-                        </div>
-                    </div>
-                    <div class="bde-price">$ 750 <span>+ HST</span></div>
-                    <p class="bde-desc">Best for students who want extra practice and stronger road test confidence</p>
-                    
-                    <ul class="bde-list">
-                        <li><i class="fas fa-check-circle"></i> 12 hours in-car lessons</li>
-                        <li><i class="fas fa-check-circle"></i> Reduce Road Test Wait Time (8 Months)</li>
-                        <li><i class="fas fa-check-circle"></i> Eligible for Insurance discounts</li>
-                        <li><i class="fas fa-check-circle"></i> Free Pick up and Drop off</li>
-                        <li><i class="fas fa-check-circle"></i> Instructor’s Vehicle for Road Test</li>
-                    </ul>
-                    
-                    <div class="bde-footer">
-                        <div class="bde-footer-item">
-                            <i class="fas fa-car"></i> Free pickup & drop-off across Durham Region
-                        </div>
-                        <button class="bde-btn">Get Started</button>
-                    </div>
-                </div>
-            </div>
+<section class="sec faq-section" id="faq">
+ <div class="wrap">
+  <div class="faq-intro an">
+   <div class="faq-kicker">Helpful answers</div>
+   <h2 class="ttl">Frequently Asked <span>Questions</span></h2>
+   <p class="sub">Find answers about our driving courses, certificates, lessons, and road tests.</p>
+  </div>
+  <div class="fq an" id="fq">
+   <div class="fi on">
+    <button class="fqq" id="faq-q1" aria-expanded="true" aria-controls="faq-a1">Is New Method Driving School approved by the MTO? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">Yes. New Method Driving School is fully MTO-approved and licensed. This means our Beginner Driver Education (BDE) course meets MTO standards and allows students to qualify for insurance discounts and earlier G2 road test eligibility.</div>
+   </div>
+   <div class="fi">
+    <button class="fqq" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">What is the BDE course? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">BDE stands for Beginner Driver Education. It is a comprehensive course that includes 10 hours of online learning and 20 hours of in-car training.</div>
+   </div>
+   <div class="fi">
+    <button class="fqq" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">How long do I need to wait for my G2 test? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">With a valid BDE certificate, you can take your G2 test after 8 months instead of 12 months.</div>
+   </div>
+   <div class="fi">
+    <button class="fqq" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">Where do I get my driver education certificate from? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">We provide the certificate upon successful completion of the course.</div>
+   </div>
+   <div class="fi">
+    <button class="fqq" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">How do I book my road test? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5">You can book your road test online through the DriveTest website, or our instructors can guide you through the process.</div>
+   </div>
+   <div class="fi">
+    <button class="fqq" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">Is the BDE course self-paced? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6">Yes, the online portion of the BDE course is self-paced, allowing you to complete it on your own schedule.</div>
+   </div>
+   <div class="fi">
+    <button class="fqq" id="faq-q7" aria-expanded="false" aria-controls="faq-a7">How are in-car lessons scheduled? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a7" role="region" aria-labelledby="faq-q7">In-car lessons are scheduled directly with your instructor based on mutual availability.</div>
+   </div>
+   <div class="fi">
+    <button class="fqq" id="faq-q8" aria-expanded="false" aria-controls="faq-a8">How many driving lessons are completed per week? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a8" role="region" aria-labelledby="faq-q8">This varies based on the student's availability and package, but typically students complete 1–2 lessons per week.</div>
+   </div>
+   <div class="fi">
+    <button class="fqq" id="faq-q9" aria-expanded="false" aria-controls="faq-a9">Can I choose my preferred days for lessons? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a9" role="region" aria-labelledby="faq-q9">Absolutely. We strive to accommodate your schedule and will match you with an instructor who is available on your preferred days.</div>
+   </div>
+   <div class="fi">
+    <button class="fqq" id="faq-q10" aria-expanded="false" aria-controls="faq-a10">Is the pricing on your website up to date? <span class="fq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button>
+    <div class="faq-answer" id="faq-a10" role="region" aria-labelledby="faq-q10">Yes, the pricing listed on our website is our current standard pricing.</div>
+   </div>
+  </div>
+ </div>
+</section>
 
-            <!-- Call Banner -->
-            <div class="bde-call-banner animate fade-in-up">
-                <div class="bde-call-icon"><i class="fas fa-phone-alt"></i></div>
-                <p>Not sure which package is right for you? <a href="tel:905-922-2544">Call 905-922-2544</a> and we’ll help you choose.</p>
-            </div>
+<section class="sec cta-section" id="contact">
+ <div class="wrap">
+  <div class="cw">
+   <div class="an">
+    <div class="loc"><i class="fas fa-map-marker-alt"></i> SERVING SCARBOROUGH, PICKERING &amp; AJAX</div>
+    <h2>Ready to Start Your <span>First Driving Lesson?</span></h2>
+    <p>Book your first lesson today and get expert guidance for your G2, G, or BDE journey.</p>
+    <button class="btn">BOOK YOUR FIRST LESSON <i class="fas fa-arrow-right"></i></button>
+    <div class="ci"><i class="fas fa-phone-alt"></i><div><h5>Call Us</h5><b>905-922-2544</b></div></div>
+    <div class="ci"><i class="fas fa-envelope"></i><div><h5>Email Us</h5><b>info@newmethoddriving.ca</b></div></div>
+   </div>
+   <div class="an"><img src="Driving School Car Photo.jpg" alt="Luxury Car"></div>
+  </div>
+ </div>
+</section>
 
-            <!-- Comparison Table -->
-            <div class="bde-table-wrapper animate fade-in-up">
-                <table class="bde-table">
-                    <thead>
-                        <tr>
-                            <th>FEATURES</th>
-                            <th>SILVER</th>
-                            <th>GOLD</th>
-                            <th>PLATINUM</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="feature-title"><i class="fas fa-laptop"></i> Online Training</span></td>
-                            <td><i class="fas fa-check-circle"></i> 30 hours</td>
-                            <td><i class="fas fa-check-circle"></i> 30 hours</td>
-                            <td><i class="fas fa-check-circle"></i> 30 hours</td>
-                        </tr>
-                        <tr>
-                            <td><span class="feature-title"><i class="fas fa-car-side"></i> In-car lessons</span></td>
-                            <td><i class="fas fa-check-circle"></i> 10 hours</td>
-                            <td><i class="fas fa-check-circle"></i> 10 hours</td>
-                            <td><i class="fas fa-check-circle"></i> 12 hours</td>
-                        </tr>
-                        <tr>
-                            <td><span class="feature-title"><i class="fas fa-car-crash"></i> Road test car</span></td>
-                            <td><i class="fas fa-times-circle"></i> Not included</td>
-                            <td><i class="fas fa-check-circle"></i> Included</td>
-                            <td><i class="fas fa-check-circle"></i> Included</td>
-                        </tr>
-                        <tr>
-                            <td><span class="feature-title"><i class="fas fa-map-marker-alt"></i> Pickup & drop-off</span></td>
-                            <td><i class="fas fa-check-circle"></i> Free across Durham Region</td>
-                            <td><i class="fas fa-check-circle"></i> Free across Durham Region</td>
-                            <td><i class="fas fa-check-circle"></i> Free across Durham Region</td>
-                        </tr>
-                        <tr>
-                            <td><span class="feature-title"><i class="fas fa-file-invoice"></i> Insurance certificate</span></td>
-                            <td><i class="fas fa-check-circle"></i> Included</td>
-                            <td><i class="fas fa-check-circle"></i> Included</td>
-                            <td><i class="fas fa-check-circle"></i> Included</td>
-                        </tr>
-                        <tr>
-                            <td>Price</td>
-                            <td>$565</td>
-                            <td>$675</td>
-                            <td>$750</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+<section class="sec bg-white">
+ <div class="wrap">
+  <div class="tc an"><h2 class="ttl">Driving Lessons Across <span>Scarborough, Pickering &amp; Ajax</span></h2><p class="sub">We offer certified G2, G, and BDE lessons with free pickup and drop-off in Scarborough, Pickering, and Ajax. Tap your city for local lesson details.</p></div>
+  <div class="mp an"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92195.40676424889!2d-79.15865567048947!3d43.83933668148288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d0d6a8b2b4a7%3A0x4fb1c9ceb0b1f94f!2sPickering%2C%20ON!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Service area map"></iframe><div class="mo">New Method Driving School</div></div>
+ </div>
+</section>
 
-    <!-- MINISTRY APPROVED BDE -->
-    <section class="ministry-section">
-        <div class="container">
-            <div class="ministry-header animate fade-in-up">
-                <h2>Ministry Approved BDE Course Provider<br>Choose Best Ever Package Instantly.</h2>
-                <p>Transparent, affordable excellence—New Method Driving School's pricing instills trust with value and unbeatable quality in education.</p>
-            </div>
-            
-            <div class="ministry-grid">
-                <div class="ministry-card animate fade-in-up" style="transition-delay: 0.1s;">
-                    <div class="ministry-icon"><i class="fas fa-crown"></i></div>
-                    <h3>G2 Lessons</h3>
-                    <p>Our G2 Private Packages are best for those who want something special and attentive for their needs.</p>
-                    <a href="#" class="btn-ministry">PACKAGES</a>
-                </div>
-                <div class="ministry-card animate fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="ministry-icon"><i class="fas fa-crown"></i></div>
-                    <h3>G Lessons</h3>
-                    <p>Our G Private Plan is for those who want better and individual attentive, One-and-One Lesson and training.</p>
-                    <a href="#" class="btn-ministry">PACKAGES</a>
-                </div>
-                <div class="ministry-card animate fade-in-up" style="transition-delay: 0.3s;">
-                    <div class="ministry-icon"><i class="fas fa-crown"></i></div>
-                    <h3>MTO Courses</h3>
-                    <p>MTO Courses are certified and verified by Government of Transportation for their safe driving lessons only.</p>
-                    <a href="#" class="btn-ministry">PACKAGES</a>
-                </div>
-                <div class="ministry-card animate fade-in-up" style="transition-delay: 0.4s;">
-                    <div class="ministry-icon"><i class="fas fa-crown"></i></div>
-                    <h3>All Courses</h3>
-                    <p>Checkout our all courses, and can also apply for them directly from here and our team will help you.</p>
-                    <a href="#" class="btn-ministry">ALL COURSES</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+ <div class="wrap">
+  <div class="fgd">
+   <div><div class="fl"><img src="/logo.jpeg" alt="New Method Driving School"><div class="lt"><span class="a">New Method</span><span class="b">Driving School</span></div></div><p>At New Method Driving School, we strive to establish a young community that can not only drive safely, but feels confident and motivated by their passions and skills.</p><div class="so"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></div></div>
+   <div><h4>Quick Links</h4><ul><li><a href="#">About Us</a></li><li><a href="#packages">Packages</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#">Careers</a></li><li><a href="#contact">Contact Us</a></li><li><a href="#">Blogs</a></li></ul></div>
+   <div><h4>Service Areas</h4><ul><li><a href="#">Scarborough</a></li><li><a href="#">Pickering</a></li><li><a href="#">Ajax</a></li></ul></div>
+   <div><h4>Contact Details</h4>
+    <div class="fc"><i class="fas fa-map-marker-alt"></i><div><p class="h">Address</p><p>Scarborough, ON</p></div></div>
+    <div class="fc"><i class="fas fa-phone-alt"></i><div><p class="h">Phone Number</p><p>905-922-2544</p></div></div>
+    <div class="fc"><i class="fas fa-envelope"></i><div><p class="h">Email</p><p>info@newmethoddriving.ca</p></div></div>
+   </div>
+  </div>
+  <div class="fbm">&copy; 2026 New Method Driving School. All Rights Reserved.</div>
+ </div>
+</footer>
 
-    <!-- ALTERNATE PACKAGES -->
-    <section class="alt-packages-section">
-        <div class="container">
-            <div class="alt-package-list">
-                <!-- Silver Package -->
-                <div class="alt-package-card animate fade-in-left">
-                    <div class="alt-pkg-header">
-                        <div>
-                            <h3>SILVER PACKAGE:</h3>
-                            <div class="alt-pkg-badge">SALE</div>
-                        </div>
-                        <div class="alt-pkg-price">$589<span>+HST</span></div>
-                    </div>
-                    <ul class="alt-pkg-list">
-                        <li>20 hours of Online</li>
-                        <li>10 hours Home-Link, 10 hours of In-Car Lessons,</li>
-                        <li>Certificate from the Ministry of Transportation</li>
-                    </ul>
-                    <div style="font-size: 14px; margin-bottom: 15px; color: #555;">
-                        <strong>Price:</strong> $589+MTO+Admin Fee+HST=$699.00
-                    </div>
-                    <button class="alt-pkg-btn">Apply Coupon</button>
-                </div>
+<script>
+// Reviews data for infinite scrolling
+const R=[
+["Adams Suberu","4 months ago","I had an excellent experience learning to drive with Mr. Fahim. Thanks to his professional teaching style, I felt confident and passed my G2 test.","#7C3AED"],
+["Pardhasaradhi N","4 months ago","Got my license in first attempt. Shabir is a good instructor. Very professional and knowledgeable. Highly recommended for new drivers.","#0EA5E9"],
+["Lintu George","4 months ago","Hi, I’m so glad that I took my G2 driving lessons here. From the first lesson the instructor was patient, supportive and clear.","#F59E0B"],
+["Dushy Perumal","4 months ago","I got my lessons from Fahim Yarzai and he was exceptional and patient in all the classes and built me that confidence I needed.","#16A34A"],
+["Dayna Uberty","4 months ago","Thanks to my instructor Mandy I was able to pass my G2 test. She was very patient and made every lesson comfortable.","#DB2777"],
+["Iesfu Teshome","4 months ago","Thanks to my instructor Fahim for their professionalism and dedication I passed my G2! Truly the best driving school.","#CA3535"]];
 
-                <!-- Gold Package -->
-                <div class="alt-package-card animate fade-in-right">
-                    <div class="alt-pkg-header">
-                        <div>
-                            <h3>GOLD PACKAGE:</h3>
-                            <div class="alt-pkg-badge">SALE</div>
-                        </div>
-                        <div class="alt-pkg-price">$769<span>+HST</span></div>
-                    </div>
-                    <ul class="alt-pkg-list">
-                        <li>20 hours of Online, 10 hours Home-Link</li>
-                        <li>11 hours of In-Car Lessons</li>
-                        <li>Certificate from MTO</li>
-                        <li>School Car for a Road Test in Toronto (Etobicoke, Downsview Drive Test Center, or Metro East).</li>
-                    </ul>
-                    <div style="font-size: 14px; margin-bottom: 15px; color: #555;">
-                        <strong>Price:</strong> $769+MTO+Admin Fee+HST=$899.00
-                    </div>
-                    <button class="alt-pkg-btn">Apply Coupon</button>
-                </div>
+const st='<i class="fas fa-star"></i>'.repeat(5);
+const rt=document.getElementById('rt');
 
-                <!-- Platinum Package -->
-                <div class="alt-package-card animate fade-in-left">
-                    <div class="alt-pkg-header">
-                        <div>
-                            <h3>PLATINUM PACKAGE:</h3>
-                            <div class="alt-pkg-badge">SALE</div>
-                        </div>
-                        <div class="alt-pkg-price">$895<span>+HST</span></div>
-                    </div>
-                    <ul class="alt-pkg-list">
-                        <li>20 hours of Online</li>
-                        <li>10 hours Home-Link</li>
-                        <li>15 hours of In-Car Lessons</li>
-                        <li>Certificate from the Ministry of Transportation</li>
-                        <li>School Car for a Road Test in Toronto (Etobicoke, Downsview Drive Test Center, or Metro East).</li>
-                    </ul>
-                    <div style="font-size: 14px; margin-bottom: 15px; color: #555;">
-                        <strong>Regular Price:</strong> $895+MTO+Admin Fee+HST=$1099
-                    </div>
-                    <button class="alt-pkg-btn">Register</button>
-                </div>
+// Double the array to allow seamless infinite scrolling
+const allR = [...R, ...R];
 
-                <!-- VIP Package -->
-                <div class="alt-package-card animate fade-in-right">
-                    <div class="alt-pkg-header">
-                        <div>
-                            <h3>VIP PACKAGE:</h3>
-                            <div class="alt-pkg-badge">SALE</div>
-                        </div>
-                        <div class="alt-pkg-price">$1075<span>+HST</span></div>
-                    </div>
-                    <ul class="alt-pkg-list">
-                        <li>20 hours of Online</li>
-                        <li>10 hours Home-Link</li>
-                        <li>18 hours of In-Car Lessons</li>
-                        <li>Certificate from the Ministry of Transportation</li>
-                        <li>School Car for a Road Test in Toronto.</li>
-                    </ul>
-                    <div style="font-size: 14px; margin-bottom: 15px; color: #555;">
-                        <strong>Price:</strong> $1075+MTO+Admin Fee+HST
-                    </div>
-                    <button class="alt-pkg-btn">Apply Coupon</button>
-                </div>
-            </div>
-        </div>
-    </section>
+rt.innerHTML=allR.map(r=>`
+<div class="rc">
+  <div class="rh">
+    <div class="av" style="background:${r[3]}">${r[0][0]}</div>
+    <div><h4>${r[0]}</h4><small>${r[1]}</small></div>
+    <span class="g fab fa-google"></span>
+  </div>
+  <div class="stars">${st}<i class="fas fa-circle-check"></i></div>
+  <p class="rx">${r[2]}</p>
+  <button class="rm">Read more</button>
+</div>`).join('');
 
-    <!-- GOOGLE REVIEWS -->
-    <section class="google-reviews-section">
-        <div class="container">
-            <div class="gr-header animate fade-in-up">
-                <div class="gr-title">
-                    <h2>What our <span>Students</span> and New <span>Drivers</span> Say</h2>
-                    <p style="color: var(--text-gray); font-size: 14px; margin-top: 10px;">Over 900+ five-star reviews on Google. Here are just a few of the stories from students who passed with us.</p>
-                </div>
-                <div class="gr-score">
-                    <div class="gr-score-text">EXCELLENT</div>
-                    <div class="gr-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p style="font-size: 12px; color: #666; margin-bottom: 5px;">Based on <strong>902 reviews</strong></p>
-                    <i class="fab fa-google gr-google-logo"></i>
-                </div>
-            </div>
+rt.addEventListener('click',e=>{
+  if(e.target.className=='rm'){
+    const t=e.target.previousElementSibling.classList.toggle('open');
+    e.target.textContent=t?'Show less':'Read more';
+  }
+});
 
-            <div class="gr-slider-container">
-                <div class="gr-cards-wrapper">
-                    <!-- Original 3 Reviews -->
-                    <div class="gr-card">
-                        <div class="gr-card-header">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dushy" class="gr-avatar" onerror="this.style.display='none'">
-                            <div class="gr-user-info"><h4>Dushy Perumal</h4><p>4 months ago</p></div>
-                        </div>
-                        <div class="gr-card-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="gr-card-text">I got my lessons from Fahim Yarzai and he was exceptional and patient in all the classes and built me that...</p>
-                        <i class="fab fa-google gr-card-logo"></i>
-                    </div>
-                    
-                    <div class="gr-card">
-                        <div class="gr-card-header">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dayna" class="gr-avatar" onerror="this.style.display='none'">
-                            <div class="gr-user-info"><h4>Dayna Uberty</h4><p>4 months ago</p></div>
-                        </div>
-                        <div class="gr-card-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="gr-card-text">Thanks to champions driving academy and my instructor Mandy I was able to pass my G2 test. She was very...</p>
-                        <i class="fab fa-google gr-card-logo"></i>
-                    </div>
+// FAQ layout: independent desktop columns, natural single-column mobile flow.
+const faqRoot = document.getElementById('fq');
+const faqItems = Array.from(faqRoot.querySelectorAll(':scope > .fi'));
+let faqIsDesktop = null;
+function arrangeFaqColumns(){
+  const desktop = window.matchMedia('(min-width: 769px)').matches;
+  if (desktop === faqIsDesktop) return;
+  faqIsDesktop = desktop;
+  faqRoot.innerHTML = '';
+  if (desktop) {
+    const left = document.createElement('div');
+    const right = document.createElement('div');
+    left.className = right.className = 'fq-col';
+    faqItems.forEach((item, index) => (index % 2 === 0 ? left : right).appendChild(item));
+    faqRoot.append(left, right);
+  } else {
+    faqItems.forEach(item => faqRoot.appendChild(item));
+  }
+}
+arrangeFaqColumns();
+window.addEventListener('resize', arrangeFaqColumns, {passive:true});
+faqRoot.addEventListener('click', event => {
+  const button = event.target.closest('.fqq');
+  if (!button) return;
+  const item = button.closest('.fi');
+  const shouldOpen = !item.classList.contains('on');
+  faqItems.forEach(row => {
+    row.classList.remove('on');
+    const trigger = row.querySelector('.fqq');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  });
+  if (shouldOpen) {
+    item.classList.add('on');
+    button.setAttribute('aria-expanded', 'true');
+  }
+});
 
-                    <div class="gr-card">
-                        <div class="gr-card-header">
-                            <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Iesfu" class="gr-avatar" onerror="this.style.display='none'">
-                            <div class="gr-user-info"><h4>Iesfu teshome</h4><p>4 months ago</p></div>
-                        </div>
-                        <div class="gr-card-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="gr-card-text">Thanks to Champions and my instructor Fahim for their professionalism and dedication I passed my G2!...</p>
-                        <i class="fab fa-google gr-card-logo"></i>
-                    </div>
+// Mobile Menu Toggle
+const mb=document.getElementById('mb'),mm=document.getElementById('mm');
+const tg=o=>{
+  mm.classList.toggle('on',o);
+  mb.firstElementChild.className=o?'fas fa-times':'fas fa-bars';
+};
+mb.onclick=()=>tg(!mm.classList.contains('on'));
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>tg(false));
 
-                    <!-- Duplicated 3 Reviews for Infinite Scroll Effect -->
-                    <div class="gr-card">
-                        <div class="gr-card-header">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dushy" class="gr-avatar" onerror="this.style.display='none'">
-                            <div class="gr-user-info"><h4>Dushy Perumal</h4><p>4 months ago</p></div>
-                        </div>
-                        <div class="gr-card-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="gr-card-text">I got my lessons from Fahim Yarzai and he was exceptional and patient in all the classes and built me that...</p>
-                        <i class="fab fa-google gr-card-logo"></i>
-                    </div>
-                    
-                    <div class="gr-card">
-                        <div class="gr-card-header">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dayna" class="gr-avatar" onerror="this.style.display='none'">
-                            <div class="gr-user-info"><h4>Dayna Uberty</h4><p>4 months ago</p></div>
-                        </div>
-                        <div class="gr-card-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="gr-card-text">Thanks to champions driving academy and my instructor Mandy I was able to pass my G2 test. She was very...</p>
-                        <i class="fab fa-google gr-card-logo"></i>
-                    </div>
+// Scroll Reveal Animations
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.classList.add('on');
+    io.unobserve(e.target);
+  }
+}),{threshold:.08});
 
-                    <div class="gr-card">
-                        <div class="gr-card-header">
-                            <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Iesfu" class="gr-avatar" onerror="this.style.display='none'">
-                            <div class="gr-user-info"><h4>Iesfu teshome</h4><p>4 months ago</p></div>
-                        </div>
-                        <div class="gr-card-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="gr-card-text">Thanks to Champions and my instructor Fahim for their professionalism and dedication I passed my G2!...</p>
-                        <i class="fab fa-google gr-card-logo"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center" style="margin-top: 30px;">
-                <button class="btn btn-red btn-small animate fade-in-up">View All Reviews</button>
-            </div>
-
-            <div class="gr-banner animate fade-in-up" style="transition-delay: 0.2s;">
-                <i class="fas fa-star"></i>
-                <p>Read All <strong>900+ Reviews on Google</strong> leading to the Google Business Profile.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq-section">
-        <div class="container faq-container">
-            <h2 class="section-title text-center animate fade-in-up" style="margin-bottom: 40px;">FAQ</h2>
-            
-            <div class="faq-item active animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">Is New Method Driving School approved by the MTO? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">Yes. New Method Driving School is fully MTO-approved and licensed. This means our Beginner Driver Education (BDE) course meets MTO standards and allows students to qualify for insurance discounts and earlier G2 road test eligibility.</div>
-            </div>
-            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">What is the BDE course? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">BDE stands for Beginner Driver Education. It is a comprehensive course that includes 10 hours of online learning and 20 hours of in-car training.</div>
-            </div>
-            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">How long do I need to wait for my G2 test? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">With a valid BDE certificate, you can take your G2 test after 8 months instead of 12 months.</div>
-            </div>
-            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">Where do I get my driver education certificate from? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">We provide the certificate upon successful completion of the course.</div>
-            </div>
-            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">How do I book my road test? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">You can book your road test online through the DriveTest website, or our instructors can guide you through the process.</div>
-            </div>
-            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">Is the BDE course self-paced? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">Yes, the online portion of the BDE course is self-paced, allowing you to complete it on your own schedule.</div>
-            </div>
-            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">How are in-car lessons scheduled? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">In-car lessons are scheduled directly with your instructor based on mutual availability.</div>
-            </div>
-            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">How many driving lessons are completed per week? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">This varies based on the student's availability and package, but typically students complete 1-2 lessons per week.</div>
-            </div>
-            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">Can I choose my preferred days for lessons? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">Absolutely. We strive to accommodate your schedule and will match you with an instructor who is available on your preferred days.</div>
-            </div>
-            <div class="faq-item animate fade-in-up" style="transition-delay: 0.1s;">
-                <div class="faq-question">Is the pricing on your website up to date? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">Yes, the pricing listed on our website is our current standard pricing.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA & MAP -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-wrapper">
-                <!-- Text and Buttons -->
-                <div class="cta-text animate fade-in-left">
-                    <div class="loc-header-text"><i class="fas fa-map-marker-alt"></i> SERVING SCARBOROUGH, PICKERING & AJAX</div>
-                    <h2>Ready to Start Your First Driving Lesson?</h2>
-                    <p>Book your first lesson today and get expert guidance for your G2, G, or BDE journey.</p>
-                    
-                    <button class="btn btn-red" style="margin-bottom: 40px;">BOOK YOUR FIRST LESSON <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></button>
-                    
-                    <div class="cta-contact-list">
-                        <div class="cta-contact-item">
-                            <div class="cta-contact-icon"><i class="fas fa-phone-alt"></i></div>
-                            <div class="cta-contact-info">
-                                <h4>Call Us</h4>
-                                <p>905-922-2544</p>
-                            </div>
-                        </div>
-                        <div class="cta-contact-item">
-                            <div class="cta-contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="cta-contact-info">
-                                <h4>Email Us</h4>
-                                <p>info@newmethoddriving.ca</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Image (Now shows first on mobile due to flex-direction: column-reverse) -->
-                <div class="cta-image animate fade-in-right">
-                    <img src="image 10.png" alt="Luxury Car">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="map-section">
-        <div class="container">
-            <div class="map-header animate fade-in-up">
-                <h2>Driving Lessons Across <span>Scarborough, Pickering & Ajax</span></h2>
-                <p>We offer certified G2, G, and BDE lessons with free pickup and drop-off in Scarborough, Pickering, and Ajax. Tap your city for local lesson details.</p>
-            </div>
-            <div class="map-wrapper animate zoom-in">
-                <!-- Updated Map iframe to center on Scarborough/Pickering/Ajax area -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92195.40676424889!2d-79.15865567048947!3d43.83933668148288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d0d6a8b2b4a7%3A0x4fb1c9ceb0b1f94f!2sPickering%2C%20ON!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                <div class="map-overlay">New Method Driving School</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col animate fade-in-up" style="transition-delay: 0.1s;">
-                    <div class="footer-logo-wrapper">
-                        <img src="/logo.jpeg" alt="New Method Driving School" class="footer-logo-img">
-                        <div class="footer-company-text">
-                            <span class="line1">New Method</span>
-                            <span class="line2">Driving School</span>
-                        </div>
-                    </div>
-                    <p>At New Method Driving School, we strive to establish a young community that can not only drive safely, but feels confident and motivated by their passions and skills.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col animate fade-in-up" style="transition-delay: 0.2s;">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Packages</a></li>
-                        <li><a href="#">Reviews</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Blogs</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col animate fade-in-up" style="transition-delay: 0.3s;">
-                    <h4>Service Areas</h4>
-                    <ul>
-                        <li><a href="#">Scarborough</a></li>
-                        <li><a href="#">Pickering</a></li>
-                        <li><a href="#">Ajax</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col animate fade-in-up" style="transition-delay: 0.4s;">
-                    <h4>Contact Details</h4>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <p style="font-weight: 700; color: white; margin-bottom: 3px;">Contact Details</p>
-                            <p>Scarborough, ON</p>
-                        </div>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div>
-                            <p style="font-weight: 700; color: white; margin-bottom: 3px;">Phone Number</p>
-                            <p>905-922-2544</p>
-                        </div>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <p style="font-weight: 700; color: white; margin-bottom: 3px;">Email</p>
-                            <p>info@newmethoddriving.ca</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 New Method Driving School. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT -->
-    <script>
-        // FAQ Accordion logic
-        document.querySelectorAll('.faq-question').forEach(item => {
-            item.addEventListener('click', () => {
-                const parent = item.parentElement;
-                document.querySelectorAll('.faq-item').forEach(other => {
-                    if (other !== parent) other.classList.remove('active');
-                });
-                parent.classList.toggle('active');
-            });
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            // Toggle icon between bars and close (x)
-            const icon = mobileMenuBtn.querySelector('i');
-            if (mobileMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
-        });
-
-        // Scroll Reveal Animations
-        document.addEventListener("DOMContentLoaded", function() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            const elementsToAnimate = document.querySelectorAll('.animate');
-            elementsToAnimate.forEach(el => {
-                observer.observe(el);
-            });
-        });
-    </script>
+document.querySelectorAll('.an').forEach(e=>io.observe(e));
+</script>
 </body>
 </html>
